@@ -30,10 +30,10 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.scaleFactor = 1;
-        this.displayDiamond = true;
+        this.displayDiamond = false;
         this.displayTriangle = false;
         this.displayParal = false;
-        this.displaySmallT = false;
+        this.displaySmallT = true;
         this.displayBigT = false;
     }
     initLights() {
@@ -116,10 +116,24 @@ class MyScene extends CGFscene {
         if(this.displayParal)
             this.paral.display();
         
+        //Guarda-se a matrix identidade
+        this.pushMatrix()
+
+        //Efectua-se translação
+        this.translate(-Math.sin(Math.PI/4)*1, -Math.sin(Math.PI/4)*1, 0)
+
+        //Rotação de 225º em torno do eixo do z
+        this.rotate(5*Math.PI/4, 0, 0, 1)
+        
         // Draw Small Triangle
         if(this.displaySmallT)
             this.smallT.display();
         
+
+        //Volta-se a por a identidade
+        this.popMatrix()
+
+
         if(this.displayBigT)
             this.bigT.display();
         
