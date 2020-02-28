@@ -31,10 +31,10 @@ class MyScene extends CGFscene {
         this.displayAxis = true;
         this.scaleFactor = 1;
         this.displayDiamond = true;
-        this.displayTriangle = true;
-        this.displayParal = true;
-        this.displaySmallT = true;
-        this.displayBigT = true;
+        this.displayTriangle = false;
+        this.displayParal = false;
+        this.displaySmallT = false;
+        this.displayBigT = false;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -78,10 +78,36 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
         
+        this.pushMatrix()
+        
+        //Matrix da translação de 1/2 para cima
+        let mT = 
+        [ 1,        0,        0, 0,
+          0,        1,        0, 0,
+          0,        0,        1, 0,
+          0,  Math.sqrt(0.5), 0, 1
+        ]
+
+        //Matrix da rotação de 90º em torno do eixo dos z
+        let mRz90 = 
+        [
+            Math.cos(Math.PI/4), -Math.sin(Math.PI/4), 0, 0,
+            Math.sin(Math.PI/4), Math.cos(Math.PI/4),  0, 0,
+                    0          ,        0           ,  1, 0,
+                    0          ,        0           ,  0, 1
+        ]
+
+        //Aplicando as transformações
+        this.multMatrix(mT)
+        this.multMatrix(mRz90)
+
+        
         // Draw diamond
         if (this.displayDiamond)
             this.diamond.display();
-
+        
+        this.popMatrix()
+        
         // Draw triangle
         if (this.displayTriangle)
             this.triangle.display();
