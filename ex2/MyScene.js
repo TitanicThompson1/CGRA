@@ -24,7 +24,8 @@ class MyScene extends CGFscene {
         this.diamond = new MyDiamond(this);
         this.triangle = new MyTriangle(this);
         this.paral = new MyParallelogram(this);
-        this.smallT = new MyTriangleSmall(this);
+        this.smallT1 = new MyTriangleSmall(this);
+        this.smallT2 = new MyTriangleSmall(this);
         this.bigT = new MyTriangleBig(this);
 
         //Objects connected to MyInterface
@@ -32,8 +33,8 @@ class MyScene extends CGFscene {
         this.scaleFactor = 1;
         this.displayDiamond = false;
         this.displayTriangle = false;
-        this.displayParal = false;
-        this.displaySmallT = true;
+        this.displayParal = true;
+        this.displaySmallT = false;
         this.displayBigT = false;
     }
     initLights() {
@@ -127,9 +128,25 @@ class MyScene extends CGFscene {
         
         // Draw Small Triangle
         if(this.displaySmallT)
-            this.smallT.display();
-        
+            this.smallT1.display();
 
+        this.popMatrix()
+        
+/*----------------------------------------*/
+        this.pushMatrix()
+
+        //Efectua-se translação
+        this.translate(Math.sin(Math.PI/4)*1, Math.sin(Math.PI/4)*1 + Math.sqrt(0.5)*2 , 0)
+
+        //Rotação de 45 º em torno do eixo do z
+        this.rotate(Math.PI/4, 0, 0, 1)
+
+
+        // Draw Small Triangle
+        if(this.displaySmallT)
+            this.smallT2.display();
+
+        
         //Volta-se a por a identidade
         this.popMatrix()
 
