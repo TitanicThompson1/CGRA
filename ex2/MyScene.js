@@ -113,10 +113,29 @@ class MyScene extends CGFscene {
         if (this.displayTriangle)
             this.triangle.display();
         
+
+/*------------------PARALLELOGRAM----------------------*/
+
+        this.pushMatrix()
+
+        //Rotação de 45º em torno do eixo z
+        this.rotate(Math.PI/4, 0, 0, 1)
+
+        //Rotação de 180º em torno do eixo do y
+        this.rotate(Math.PI, 0, 1, 0)
+
+
+        //Rotação de 225º em torno do eixo do z
+        //this.rotate(3*Math.PI/4, 0, 0, 1)
+
         // Draw parallelogram
         if(this.displayParal)
             this.paral.display();
         
+        this.popMatrix()
+
+/*------------------BOTTOM SMALL TRIANGLE----------------------*/
+
         //Guarda-se a matrix identidade
         this.pushMatrix()
 
@@ -132,7 +151,7 @@ class MyScene extends CGFscene {
 
         this.popMatrix()
         
-/*----------------------------------------*/
+/*------------------TOP SMALL TRIANGLE----------------------*/
         this.pushMatrix()
 
         //Efectua-se translação
@@ -150,7 +169,7 @@ class MyScene extends CGFscene {
         //Volta-se a por a identidade
         this.popMatrix()
 
-
+/*----------------------------------------*/
         if(this.displayBigT)
             this.bigT.display();
         
