@@ -247,8 +247,8 @@ class MyScene extends CGFscene {
     this.pushMatrix();
 
     //Transformations - BigTriangle
-    //Translation OK
-    this.translate(Math.sqrt(1 / 2), -1, 0);
+    //Translation metade da base do triangulo - lado quadrado
+    this.translate(Math.sqrt(1 / 2), -(2 - Math.sqrt(2)), 0);
 
     //Rotation 270º em torno do eixo z WHY IT ISNT WORKINGGGG?
     this.rotate((3 * Math.PI) / 2, 0, 0, 1);
