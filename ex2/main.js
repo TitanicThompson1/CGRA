@@ -48,6 +48,7 @@ serialInclude([
   "MyTriangleSmall.js",
   "MyTriangleBig.js",
   "MyTangram.js",
+  "MyUnitCube.js",
 
   (main = function() {
     var app = new CGFapplication(document.body);

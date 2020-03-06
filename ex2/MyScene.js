@@ -22,8 +22,10 @@ class MyScene extends CGFscene {
     //Initialize axis
     this.axis = new CGFaxis(this);
 
-    //Initialize Tangram
+    //Initialize Objects
     this.tangram = new MyTangram(this);
+    this.unitCube = new MyUnitCube(this)
+
 
     //Objects connected to MyInterface
     this.displayTangram = true;
@@ -90,8 +92,23 @@ class MyScene extends CGFscene {
 
     // ---- BEGIN Primitive drawing section
 
+    this.pushMatrix()
+
+    this.translate(3, 0, 4)
+    this.rotate(-Math.PI/2, 1, 0, 0)
+
     if (this.displayTangram) this.tangram.display(this);
 
+    this.pushMatrix()     
+
+    this.scale(6, 8, 1)
+    this.translate(0, 0, -0.6)
+    this.unitCube.display()
+    
+    this.popMatrix()      
+
+    this.popMatrix()
     // ---- END Primitive drawing section
+    
   }
 }
