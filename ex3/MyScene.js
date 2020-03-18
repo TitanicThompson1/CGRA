@@ -8,7 +8,7 @@ class MyScene extends CGFscene {
     }
     init(application) {
         //Need to do this BEFORE initLights
-        this.scaleAmbLight = 0.3;
+        this.scaleAmbLight = 0.5;
 
         super.init(application);
         this.initCameras();
@@ -45,8 +45,8 @@ class MyScene extends CGFscene {
 
     }
     initLights() {
-        this.setGlobalAmbientLight(this.globalAmbLight, this.globalAmbLight, this.globalAmbLight, 1.0);
-        console.log(this.globalAmbLight)
+        this.setGlobalAmbientLight(this.scaleAmbLight, this.scaleAmbLight, this.scaleAmbLight, 1.0);
+        
         this.lights[0].setPosition(2.0, 2.0, -1.0, 1.0);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].setSpecular(1.0, 1.0, 1.0, 1.0);
