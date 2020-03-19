@@ -21,49 +21,49 @@ class MyTangram extends CGFobject {
 
   initMaterial(){
     //Diamond
-    this.green = new CFGappearance(this.scene);
+    this.green = new CGFappearance(this.scene);
     this.green.setSpecular(0, 1.0, 0, 1.0);
     this.green.setDiffuse(0, 0, 0, 1.0);
     this.green.setAmbient(0.3, 0.3, 0.3, 1.0);
     this.green.setShininess(10.0);
 
     //Triangle
-    this.pink = new CFGappearance(this.scene);
+    this.pink = new CGFappearance(this.scene);
     this.pink.setSpecular(1.0, 192.0/255.0, 203.0/255.0, 1.0);
     this.pink.setDiffuse(0, 0, 0, 1.0);
     this.pink.setAmbient(0.3, 0.3, 0.3, 1.0);
     this.pink.setShininess(10.0);
 
     //Parallelogram
-    this.yellow = new CFGappearance(this.scene);
-    this.yellow.setSpecular(1.0, 1.0, 0.0, 1.0);
+    this.yellow = new CGFappearance(this.scene);
+    this.yellow.setSpecular(0, 0, 1.0, 1.0);
     this.yellow.setDiffuse(0, 0, 0, 1.0);
-    this.yellow.setAmbient(0.3, 0.3, 0.3, 1.0);
+    this.yellow.setAmbient(0.5, 0.5, 0.5, 1.0);
     this.yellow.setShininess(10.0);
 
     //Triangle Small 1
-    this.red = new CFGappearance(this.scene);
+    this.red = new CGFappearance(this.scene);
     this.red.setSpecular(1.0, 0.0, 0.0, 1.0);
     this.red.setDiffuse(0, 0, 0, 1.0);
     this.red.setAmbient(0.3, 0.3, 0.3, 1.0);
     this.red.setShininess(10.0);
 
     //Triangle Small 2
-    this.purple = new CFGappearance(this.scene);
+    this.purple = new CGFappearance(this.scene);
     this.purple.setSpecular(0.694, 0.051, 0.788, 1.0);
     this.purple.setDiffuse(0, 0, 0, 1.0);
     this.purple.setAmbient(0.3, 0.3, 0.3, 1.0);
     this.purple.setShininess(10.0);
 
     //Triangle Big 1
-    this.orange = new CFGappearance(this.scene);
+    this.orange = new CGFappearance(this.scene);
     this.orange.setSpecular(1.0, 0.522, 0.106, 1.0);
     this.orange.setDiffuse(0, 0, 0, 1.0);
     this.orange.setAmbient(0.3, 0.3, 0.3, 1.0);
     this.orange.setShininess(10.0);
 
     //Triangle Big 2
-    this.blue = new CFGappearance(this.scene);
+    this.blue = new CGFappearance(this.scene);
     this.blue.setSpecular(48.0/255.0, 143.0/255.0, 164.0/255.0, 1.0);
     this.blue.setDiffuse(0, 0, 0, 1.0);
     this.blue.setAmbient(0.3, 0.3, 0.3, 1.0);
@@ -134,7 +134,7 @@ class MyTangram extends CGFobject {
     this.scene.multMatrix(mRot90clockwise);
 
     //Color
-    this.scene.green.apply();
+    this.green.apply();
 
     // Draw diamond
     this.scene.diamond.display();
@@ -156,7 +156,7 @@ class MyTangram extends CGFobject {
     this.scene.rotate((5 * Math.PI) / 4, 0, 0, 1);
 
     //Color
-    this.scene.pink.apply();
+    this.pink.apply();
 
     // Draw triangle
     this.scene.triangle.display();
@@ -177,8 +177,10 @@ class MyTangram extends CGFobject {
     //Rotação de 225º em torno do eixo do z
     //this.rotate(3*Math.PI/4, 0, 0, 1)
 
+    console.log(this.yellow);
+
     //Color
-    this.scene.yellow.apply();
+    this.yellow.apply();
 
     // Draw parallelogram
     this.scene.paral.display();
@@ -197,7 +199,7 @@ class MyTangram extends CGFobject {
     this.scene.rotate((5 * Math.PI) / 4, 0, 0, 1);
 
     //Color
-    this.scene.purple.apply();
+    this.purple.apply();
 
     // Draw Small Triangle
     this.scene.smallT1.display();
@@ -219,7 +221,7 @@ class MyTangram extends CGFobject {
     this.scene.rotate(Math.PI / 4, 0, 0, 1);
 
     //Color
-    this.scene.red.apply();
+    this.red.apply();
 
     // Draw Small Triangle
     this.scene.smallT2.display();
@@ -240,7 +242,7 @@ class MyTangram extends CGFobject {
     this.scene.rotate(Math.PI / 2, 0, 0, 1);
 
     //Color
-    this.scene.orange.apply();
+    this.orange.apply();
 
     //Draw Top Big Triangle
     this.scene.bigT1.display();
@@ -260,7 +262,7 @@ class MyTangram extends CGFobject {
     this.scene.rotate((3 * Math.PI) / 2, 0, 0, 1);
 
     //Color
-    this.scene.blue.apply();
+    this.blue.apply();
 
     //Draw Top Big Triangle
     this.scene.bigT2.display();
