@@ -17,6 +17,20 @@ class MyTangram extends CGFobject {
     scene.bigT1 = new MyTriangleBig(scene);
     scene.bigT2 = new MyTriangleBig(scene);
   }
+  
+  //This function enables the visualization of the normals
+  enableNormalViz() {
+
+    this.scene.diamond.enableNormalViz()
+    this.scene.triangle.enableNormalViz()
+    this.scene.paral.enableNormalViz()
+    this.scene.smallT1.enableNormalViz()
+    this.scene.smallT2.enableNormalViz()
+    this.scene.bigT1.enableNormalViz()
+    this.scene.bigT2.enableNormalViz()
+      
+  }
+
 
   display() {
     // Insert Identity matrix into stack
