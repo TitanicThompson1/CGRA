@@ -20,10 +20,19 @@ class MyTriangleBig extends CGFobject {
 			0, 1, 2
 		];
 
+		//Normals definition
 		this.normals=[]
 
         for(let i=0;i<3;i++)
             this.normals.push(0,0,1);
+
+		//Texture points definition
+		this.texCoords = [
+			0, 1,
+			0.5, 0.5,
+			1, 1
+		]
+
 
 
 		//The defined indices (and corresponding vertices)

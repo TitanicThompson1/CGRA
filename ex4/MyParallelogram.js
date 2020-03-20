@@ -27,11 +27,27 @@ class MyParallelogram extends CGFobject{
             5, 6, 4,
             5, 7, 6
         ]
+
+        //Normals definition
         this.normals=[]
         for(let i=0;i<4;i++)
             this.normals.push(0,0,1);
         for(let i=0;i<4;i++)
             this.normals.push(0,0,-1);
+        
+        //Texture points definition
+        this.texCoords = [
+            0, 1,
+            0, 0,
+            1, 1,
+            1, 0,
+            0, 1,
+            0, 0,
+            1, 1,
+            1, 0
+        ]
+
+        
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers()
     }

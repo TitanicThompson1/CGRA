@@ -9,11 +9,12 @@ class MyDiamond extends CGFobject {
 		this.initBuffers();
 	}
 	initBuffers() {
+
 		this.vertices = [
-			-1, 0, 0,	//0
-			0, -1, 0,	//1
-			0, 1, 0,	//2
-			1, 0, 0		//3
+			-1, 0, 0,	//0		left
+			0, -1, 0,	//1		down
+			0, 1, 0,	//2		up
+			1, 0, 0		//3		right
 		];
 
 		//Counter-clockwise reference of vertices
@@ -27,6 +28,16 @@ class MyDiamond extends CGFobject {
 
 		for(let i=0;i<4;i++)
 			this.normals.push(0,0,1);
+
+		//Texture points definition
+		this.texCoords = [
+			0, 0,
+			0, 1,
+			1, 0,
+			1, 1
+		]
+
+
 
 		//The defined indices (and corresponding vertices)
 		//will be read in groups of three to draw triangles

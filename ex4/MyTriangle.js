@@ -20,10 +20,20 @@ class MyTriangle extends CGFobject{
             1, 0, 2
         ]
 
+
+        //Normals definition
         this.normals=[]
 
         for(let i=0;i<3;i++)
             this.normals.push(0,0,1);
+
+
+        //Texture points definition
+        this.texCoords = [
+			1, 0,
+			0, 0,
+            1, 1,
+		]
 
 
         this.primitiveType = this.scene.gl.TRIANGLES;
