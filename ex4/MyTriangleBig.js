@@ -4,10 +4,13 @@
  * @param scene - Reference to MyScene object
  */
 class MyTriangleBig extends CGFobject {
-	constructor(scene) {
+	constructor(scene, texCoords = undefined) {
 		super(scene);
+		this.texCoords = texCoords
 		this.initBuffers();
+
 	}
+	
 	initBuffers() {
 		this.vertices = [
 			-2, 0, 0,	//0
@@ -24,16 +27,8 @@ class MyTriangleBig extends CGFobject {
 		this.normals=[]
 
         for(let i=0;i<3;i++)
-            this.normals.push(0,0,1);
-
-		//Texture points definition
-		this.texCoords = [
-			0, 1,
-			0.5, 0.5,
-			1, 1
-		]
-
-
+			this.normals.push(0,0,1);
+		
 
 		//The defined indices (and corresponding vertices)
 		//will be read in groups of three to draw triangles

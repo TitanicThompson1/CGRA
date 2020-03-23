@@ -5,9 +5,11 @@
 */
 
 class MyTriangleSmall extends CGFobject{
-    constructor(scene){
+    constructor(scene, texCoords = undefined){
         super(scene);
 
+        this.texCoords = texCoords
+        
         this.initBuffers()
     }
 
@@ -28,15 +30,6 @@ class MyTriangleSmall extends CGFobject{
 
         for(let i=0;i<3;i++)
             this.normals.push(0,0,1);
-
-
-        //Texture points definition
-		this.texCoords = [
-			0, 1,
-			0.5, 0.5,
-			1, 1
-		]
-
 
         this.primitiveType = this.scene.gl.TRIANGLES;
 

@@ -7,10 +7,10 @@ class MyTangram extends CGFobject {
   constructor(scene) {
     super(scene);
     this.scene = scene;
-
+    this.initPieces();
     this.initMaterial();
 
-    this.initPieces();
+
     this.initTextures();
 
   }
@@ -21,10 +21,11 @@ class MyTangram extends CGFobject {
     this.scene.diamond = new MyDiamond(this.scene);
     this.scene.triangle = new MyTriangle(this.scene);
     this.scene.paral = new MyParallelogram(this.scene);
-    this.scene.smallT1 = new MyTriangleSmall(this.scene);
-    this.scene.smallT2 = new MyTriangleSmall(this.scene);
-    this.scene.bigT1 = new MyTriangleBig(this.scene);
-    this.scene.bigT2 = new MyTriangleBig(this.scene);
+    this.scene.smallT1 = new MyTriangleSmall(this.scene, [0,0,  0,0.5,  0.25,0.25]);
+    this.scene.smallT2 = new MyTriangleSmall(this.scene, [0.25,0.75,  0.75,0.75,  0.5,0.5]);
+    this.scene.bigT1 = new MyTriangleBig(this.scene, [1,1, 1,0,  0.5, 0.5]);
+
+    this.scene.bigT2 = new MyTriangleBig(this.scene, [1, 0,  0,0,  0.5,0.5]);
   }
 
   initMaterial(){
@@ -277,7 +278,6 @@ class MyTangram extends CGFobject {
 
     //Put Texture in Material
     this.orange.setTexture(this.tangramTexture)
-
 
     //Color
     this.orange.apply();
