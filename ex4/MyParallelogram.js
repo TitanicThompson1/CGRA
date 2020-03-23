@@ -37,15 +37,14 @@ class MyParallelogram extends CGFobject{
         
         //Texture points definition
         this.texCoords = [
-            0, 1,
-            0, 0,
-            1, 1,
-            1, 0,
-            
-            0, 1,
-            0, 0,
-            1, 1,
-            1, 0
+            1,      1,      //0
+            0.75,   0.75,   //1
+            0.5,    1,      //2
+            0.25,   0.75,   //3
+            1,      1,      //4
+            0.75,   0.75,   //5
+            0.5,    1,      //6
+            0.25,   0.75    //7
         ]
 
         
