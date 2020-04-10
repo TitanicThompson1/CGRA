@@ -26,10 +26,10 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
 
-        //this.incompleteSphere = new MySphere(this, 16, 8);
+        this.incompleteSphere = new MySphere(this, 16, 8);
         this.cylinder = new MyCylinder(this, 50)
         
-
+        //Material to apply texture to
         this.material = new CGFappearance(this)
         this.material.setAmbient(0.1, 0.1, 0.1, 1);
         this.material.setDiffuse(0.9, 0.9, 0.9, 1);
@@ -43,6 +43,8 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = true;
+        this.displayCylinder = false
+        this.displaySphere = true
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -84,9 +86,13 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
-        //this.incompleteSphere.display();
-        this.material.apply()
-        this.cylinder.display()
+        if(this.displaySphere)
+            this.incompleteSphere.display()
+        
+        if(this.displayCylinder){
+            this.material.apply()
+            this.cylinder.display()
+        }
         
 
         // ---- END Primitive drawing section
