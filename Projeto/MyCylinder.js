@@ -12,9 +12,12 @@ class MyCylinder extends CGFobject{
         this.vertices = [];
         this.indices = [];
         this.normals = [];
+        this.texCoords = []
+
+        //this.texCoords = [0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0];
 
         let ang = 0;
-        let alphaAng = 2*Math.PI/this.slices;
+        let alphaAng = 2 * Math.PI/this.slices;
 
         /*
         1 face
@@ -50,7 +53,7 @@ class MyCylinder extends CGFobject{
             ang+=alphaAng;
         }
 
-        //Top Base
+        
         ang = 0
         for(let i = 0; i < this.slices; i++){
 
@@ -59,12 +62,23 @@ class MyCylinder extends CGFobject{
             this.normals.push(Math.cos(ang), 1, -Math.sin(ang));
             ang+=alphaAng;
         }
-        /*
-        for(let i=0; i < this.slices-2; i++){
-            this.indices.push(i, i + 1, i + 2)
-            this.indices.push()
+
+        //Vertices for textures
+        this.vertices.push(1, 0, 0);
+        this.vertices.push(1, 1, 0);
+
+
+        for(let i = 0; i < this.slices; i++){
+            this.texCoords.push(i/this.slices, 1)
         }
-        */
+        
+        for(let i = 0; i < this.slices; i++){
+            this.texCoords.push(i/this.slices, 0)
+        }
+        this.texCoords.push(1, 1)
+        this.texCoords.push(1, 0)
+        
+        
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();

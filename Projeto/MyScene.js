@@ -25,8 +25,21 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
+
         //this.incompleteSphere = new MySphere(this, 16, 8);
-        this.cylinder = new MyCylinder(this, 100)
+        this.cylinder = new MyCylinder(this, 50)
+        
+
+        this.material = new CGFappearance(this)
+        this.material.setAmbient(0.1, 0.1, 0.1, 1);
+        this.material.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.material.setSpecular(0.1, 0.1, 0.1, 1);
+        this.material.loadTexture('images/ourTexture4.png');
+        this.material.setTextureWrap('REPEAT', 'REPEAT');
+
+        //Textures
+        //this.texture1 = new CGFtexture(this, 'images/ourTexture.jpg');
+        this.texture1 = new CGFtexture(this, 'images/ourTexture2.png');
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -72,6 +85,7 @@ class MyScene extends CGFscene {
 
         //This sphere does not have defined texture coordinates
         //this.incompleteSphere.display();
+        this.material.apply()
         this.cylinder.display()
         
 
