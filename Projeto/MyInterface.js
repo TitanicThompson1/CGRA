@@ -21,6 +21,7 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayCylinder').name('Display Cylinder')
         this.gui.add(this.scene, 'displaySphere').name('Display Sphere')
         
+        this.gui.add(this.scene, 'scaleFactor', 0.1, 10.0).name('Scale');        
         
         return true;
     }
