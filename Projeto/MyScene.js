@@ -26,11 +26,17 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        
-        //Interface related aspects
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.cylinder = new MyCylinder(this, 50)
+        this.vehicle = new MyVehicle(this)
+
+        //Objects connected to MyInterface
+        this.displayAxis = true;
+        this.displayCylinder = false
+        this.displaySphere = false        
         this.scaleFactor = 1;
+        this.displayVehicle = true
+
         
         
         //Material to apply texture to
@@ -50,10 +56,7 @@ class MyScene extends CGFscene {
         
         
 
-        //Objects connected to MyInterface
-        this.displayAxis = true;
-        this.displayCylinder = false
-        this.displaySphere = true
+       
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -72,7 +75,23 @@ class MyScene extends CGFscene {
     }
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
-        //To be done...
+        this.checkKeys()
+    }
+
+    checkKeys() {
+        var text="Keys pressed: ";
+        var keysPressed=false;
+        // Check for key codes e.g. in https://keycode.info/
+        if (this.gui.isKeyPressed("KeyW")) {
+            text+=" W ";
+            keysPressed=true;
+        }
+        if (this.gui.isKeyPressed("KeyS")) {
+            text+=" S ";
+            keysPressed=true;
+        }
+        if (keysPressed)
+            console.log(text);
     }
 
     display() {
@@ -104,6 +123,10 @@ class MyScene extends CGFscene {
         if(this.displayCylinder){
             this.material.apply()
             this.cylinder.display()
+        }
+
+        if(this.displayVehicle){
+            this.vehicle.display()
         }
         
 
