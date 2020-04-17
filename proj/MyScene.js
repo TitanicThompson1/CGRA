@@ -5,7 +5,6 @@
 class MyScene extends CGFscene {
     constructor() {
         super();
-        
     }
     init(application) {
         super.init(application);
@@ -27,36 +26,9 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
-        this.cylinder = new MyCylinder(this, 50)
-        this.vehicle = new MyVehicle(this)
-        this.cube = new MyCubeMap(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayCylinder = false
-        this.displaySphere = false        
-        this.scaleFactor = 1;
-        this.displayVehicle = true
-        this.displayCube = false
-
-        
-        
-        //Material to apply texture to
-        this.material = new CGFappearance(this)
-        this.material.setAmbient(0.1, 0.1, 0.1, 1);
-        this.material.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.material.setSpecular(0.1, 0.1, 0.1, 1);
-        this.material.loadTexture('images/earth.jpg');
-        this.material.setTextureWrap('REPEAT', 'REPEAT');
-
-        this.materialEarth = new CGFappearance(this)
-        this.materialEarth.loadTexture('images/earth.jpg')
-
-        //Textures
-        //this.texture1 = new CGFtexture(this, 'images/ourTexture.jpg');
-        this.texture1 = new CGFtexture(this, 'images/ourTexture2.png');
-
-    
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -75,23 +47,7 @@ class MyScene extends CGFscene {
     }
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
-        this.checkKeys()
-    }
-
-    checkKeys() {
-        var text="Keys pressed: ";
-        var keysPressed=false;
-        // Check for key codes e.g. in https://keycode.info/
-        if (this.gui.isKeyPressed("KeyW")) {
-            text+=" W ";
-            keysPressed=true;
-        }
-        if (this.gui.isKeyPressed("KeyS")) {
-            text+=" S ";
-            keysPressed=true;
-        }
-        if (keysPressed)
-            console.log(text);
+        //To be done...
     }
 
     display() {
@@ -111,28 +67,10 @@ class MyScene extends CGFscene {
 
         this.setDefaultAppearance();
 
-        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
-        if(this.displaySphere){
-            this.materialEarth.apply()
-            this.incompleteSphere.display()
-        }
-        if(this.displayCylinder){
-            this.material.apply()
-            this.cylinder.display()
-        }
-
-        if(this.displayVehicle)
-            this.vehicle.display()
-
-
-        if (this.displayCube) {
-            this.cube.display()
-        }
-        
+        this.incompleteSphere.display();
 
         // ---- END Primitive drawing section
     }

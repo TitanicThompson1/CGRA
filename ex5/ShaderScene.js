@@ -208,7 +208,7 @@ class ShaderScene extends CGFscene {
 
 		
 
-		// aplly main appearance (including texture in default texture unit 0)
+		// apply main appearance (including texture in default texture unit 0)
 		this.appearance.apply();
 
 		// activate selected shader
