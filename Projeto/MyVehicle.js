@@ -4,47 +4,30 @@
  * @param scene - Reference to MyScene object
  */
 class MyVehicle extends CGFobject{
-    constructor(scene){
+    constructor(scene, object){
         super(scene);
+        this.object = object
+        this.scene = scene
         this.ang = 0
         this.speed = 0
         this.position = [0, 0, 0]
-        this.initBuffers();
     }
-    initBuffers(){
-
-        
-        
-        this.vertices = [
-            -0.5, 0, -0.34,          //0
-            0, 0, 0.66,              //1
-            0.5, 0, -0.34            //2
-        ]
-
-        //Counter-clockwise reference of vertices
-        this.indices = [
-            0, 1, 2
-        ]
-
-        this.normals=[]
-
-        for(let i=0;i<3;i++)
-            this.normals.push(0,0,1);
-
-
-        this.primitiveType = this.scene.gl.TRIANGLES;
-
-        this.initGLBuffers()
-
-
-    }
+   
     /*
     Crie a função MyVehicle.update() para atualizar a variável de posição em
     função dos valores de orientação e velocidade.
     */
     display(){
-        this.scene.translate(this.position)
-        this.rotate(0, 1, 0, this.ang)
+
+        this.scene.pushMatrix()
+        this.scene.translate(this.position[0], this.position[1], this.position[2])
+        this.scene.rotate(this.ang, 0, 1, 0)
+        this.scene.translate(0, 0 , -0.5)
+        this.scene.rotate(Math.PI/4, 0, 1, 0)
+        this.scene.rotate(-Math.PI/2, 1, 0, 0)
+        
+        this.object.display()
+        this.scene.popMatrix()
     }
 
     /*
@@ -57,7 +40,8 @@ class MyVehicle extends CGFobject{
     }
 
     accelerate(val){
-        this.speed += val
+        if(this.speed + val >= 0)
+            this.speed += val
     }
 
     reset() {
@@ -68,6 +52,9 @@ class MyVehicle extends CGFobject{
 
     update(){
         this.directionVector = [Math.sin(this.ang) * this.speed, 0, Math.cos(this.ang) * this.speed]
-        this.position = this.position + this.directionVector
+        for(let i=0; i < 3; i++){
+            this.position[i] += this.directionVector[i]
+        } 
+        
     }
 }

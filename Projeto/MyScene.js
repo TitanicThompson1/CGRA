@@ -28,7 +28,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.cylinder = new MyCylinder(this, 50)
-        this.vehicle = new MyVehicle(this)
+        this.vehicle = new MyVehicle(this, new MyTriangle(this))
         this.cube = new MyCubeMap(this);
 
         //Objects connected to MyInterface
@@ -76,6 +76,7 @@ class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys()
+        this.vehicle.update()
     }
 
     checkKeys() {
@@ -85,11 +86,29 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
+            this.vehicle.accelerate(0.1)
         }
         if (this.gui.isKeyPressed("KeyS")) {
             text+=" S ";
             keysPressed=true;
+            this.vehicle.accelerate(-0.1)
         }
+        if(this.gui.isKeyPressed("KeyA")){
+            text+=" A ";
+            keysPressed=true;
+            this.vehicle.turn(Math.PI/36)   //5º graus
+        }
+        if(this.gui.isKeyPressed("KeyD")){
+            text+=" D ";
+            keysPressed=true;
+            this.vehicle.turn(-Math.PI/36)
+        }
+        if(this.gui.isKeyPressed("KeyR")){
+            text+=" R ";
+            keysPressed=true;
+            this.vehicle.reset()
+        }
+        
         if (keysPressed)
             console.log(text);
     }
