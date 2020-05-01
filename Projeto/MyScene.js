@@ -31,6 +31,7 @@ class MyScene extends CGFscene {
         this.vehicle = new MyVehicle(this, new MyTriangle(this))
         this.cube = new MyCubeMap(this);
 
+
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayCylinder = false
@@ -38,6 +39,10 @@ class MyScene extends CGFscene {
         this.scaleFactor = 1;
         this.displayVehicle = true
         this.displayCube = false
+        this.selectedTexture = -1;  
+        this.speedFactor = 0.1
+
+        this.textureIds = { 'World': 0};
 
         
         
@@ -50,11 +55,12 @@ class MyScene extends CGFscene {
         this.material.setTextureWrap('REPEAT', 'REPEAT');
 
         this.materialEarth = new CGFappearance(this)
-        this.materialEarth.loadTexture('images/earth.jpg')
+        //this.materialEarth.loadTexture('images/earth.jpg')
 
         //Textures
         //this.texture1 = new CGFtexture(this, 'images/ourTexture.jpg');
         this.texture1 = new CGFtexture(this, 'images/ourTexture2.png');
+        this.texture = [this.texture1]
 
     
     }
@@ -79,6 +85,11 @@ class MyScene extends CGFscene {
         this.vehicle.update()
     }
 
+    //Function that resets selected texture in quadMaterial
+    updateAppliedTexture() {
+        this.cube.setTexture(this.textures[this.selectedTexture]);
+    }
+
     checkKeys() {
         var text="Keys pressed: ";
         var keysPressed=false;
@@ -86,12 +97,12 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
-            this.vehicle.accelerate(0.1)
+            this.vehicle.accelerate(this.speedFactor)
         }
         if (this.gui.isKeyPressed("KeyS")) {
             text+=" S ";
             keysPressed=true;
-            this.vehicle.accelerate(-0.1)
+            this.vehicle.accelerate(-this.speedFactor)
         }
         if(this.gui.isKeyPressed("KeyA")){
             text+=" A ";
