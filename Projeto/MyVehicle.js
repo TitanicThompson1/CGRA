@@ -18,17 +18,17 @@ class MyVehicle extends CGFobject{
     }
     initMaterials(){
         this.bodyMaterial = new CGFappearance(this.scene)
-        this.bodyMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.bodyMaterial.setAmbient(0.6, 0.6, 0.6, 1);
         this.bodyMaterial.setDiffuse(0.1, 0.1, 0.9, 1);
         this.bodyMaterial.setSpecular(0.1, 0.1, 0.1, 1);
 
         this.gondolaMaterial = new CGFappearance(this.scene)
-        this.gondolaMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.gondolaMaterial.setAmbient(0.6, 0.6, 0.6, 1);
         this.gondolaMaterial.setDiffuse(0.1, 0.1, 0.9, 1);
         this.gondolaMaterial.setSpecular(0.1, 0.1, 0.1, 1);
 
         this.rudderMaterial = new CGFappearance(this.scene)
-        this.rudderMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.rudderMaterial.setAmbient(0.6, 0.6, 0.6, 1);
         this.rudderMaterial.setDiffuse(0.1, 0.1, 0.9, 1);
         this.rudderMaterial.setSpecular(0.1, 0.1, 0.1, 1);
     }
@@ -57,10 +57,12 @@ class MyVehicle extends CGFobject{
     */
     display(){
 
-       
-        /*
+        this.scene.pushMatrix()
+        
         this.scene.translate(this.position[0], this.position[1], this.position[2])
         this.scene.rotate(this.ang, 0, 1, 0)
+        /*
+        
         this.scene.translate(0, 0 , -0.5)
         this.scene.rotate(Math.PI/4, 0, 1, 0)
         this.scene.rotate(-Math.PI/2, 1, 0, 0)
@@ -196,6 +198,8 @@ class MyVehicle extends CGFobject{
         this.scene.translate(-0.24, -1.0, -0.75)
         this.scene.scale(0.03, 0.08, 0)
         this.objects[13].display()
+
+        this.scene.popMatrix()
 
         this.scene.popMatrix()
     }
