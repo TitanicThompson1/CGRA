@@ -26,15 +26,19 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.incompleteSphere = new MySphere(this, 16, 8);
+        this.incompleteSphere = new MySphere(this, 1, 1);
         this.cylinder = new MyCylinder(this, 50)
-        this.body = new MySphere(this,)
+        this.body = new MySphere(this,)     
         this.vehicle = new MyVehicle(this, [new MySphere(this, 20, 10), new MyCylinder(this,20), 
                                     new MySphere(this, 20, 10),new MySphere(this, 20, 10),
-                                    new MyRudder(this),new MyRudder(this),new MyRudder(this),new MyRudder(this)])
+                                    new MyRudder(this),new MyRudder(this),new MyRudder(this),new MyRudder(this),
+                                    new MySphere(this, 16,8),new MySphere(this, 16,8),
+                                    new MySphere(this, 8, 4),new MySphere(this, 8, 4),new MySphere(this, 8, 4),new MySphere(this, 8, 4)])
+
         this.cube = new MyCubeMap(this);
-        this.rudder = new MyRudder(this)
-        this.crudder = {...this.rudder}
+        this.triangle = new MyTriangle(this)
+        this.triangle = new MyTriangle(this)
+        
 
 
         //Objects connected to MyInterface
@@ -65,7 +69,7 @@ class MyScene extends CGFscene {
         //Textures
         //this.texture1 = new CGFtexture(this, 'images/ourTexture.jpg');
         this.texture1 = new CGFtexture(this, 'images/ourTexture2.png');
-        this.texture = [this.texture1]
+        this.textures = [this.texture1]
 
     
     }
@@ -162,7 +166,6 @@ class MyScene extends CGFscene {
 
         if(this.displayVehicle)
             this.vehicle.display()
-
 
         if (this.displayCube) {
             this.cube.display()

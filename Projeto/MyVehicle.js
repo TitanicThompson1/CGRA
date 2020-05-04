@@ -101,6 +101,58 @@ class MyVehicle extends CGFobject{
 
         this.scene.popMatrix()
 
+        //Motors
+        this.scene.pushMatrix()
+
+        this.scene.translate(0.23, -1.1, -0.6)
+        this.scene.scale(0.1, 0.075, 0.15)
+        this.objects[8].display()
+
+        this.scene.popMatrix()
+
+        this.scene.pushMatrix()
+
+        this.scene.translate(-0.23, -1.1, -0.6)
+        this.scene.scale(0.1, 0.075, 0.15)
+        this.objects[9].display()
+
+        this.scene.popMatrix()
+
+        //Helices
+                    //1
+        this.scene.pushMatrix()
+
+        this.scene.translate(0.23, -1.2, -0.75)
+        this.scene.scale(0.03, 0.08, 0)
+        this.objects[10].display()
+
+        this.scene.popMatrix()
+                    //2
+        this.scene.pushMatrix()
+
+        this.scene.translate(0.23, -1, -0.75)
+        this.scene.scale(0.03, 0.08, 0.0)
+        this.objects[11].display()
+
+        this.scene.popMatrix()
+                    
+                    //3
+        this.scene.pushMatrix()
+
+        this.scene.translate(-0.24, -1.2, -0.75)
+        this.scene.scale(0.03, 0.08, 0)
+        this.objects[12].display()
+
+        this.scene.popMatrix()
+
+                    //4
+        this.scene.pushMatrix()
+
+        this.scene.translate(-0.24, -1.0, -0.75)
+        this.scene.scale(0.03, 0.08, 0)
+        this.objects[13].display()
+
+        this.scene.popMatrix()
     }
 
     /*
