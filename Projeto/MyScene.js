@@ -28,8 +28,13 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.cylinder = new MyCylinder(this, 50)
-        this.vehicle = new MyVehicle(this, new MyTriangle(this))
+        this.body = new MySphere(this,)
+        this.vehicle = new MyVehicle(this, [new MySphere(this, 20, 10), new MyCylinder(this,20), 
+                                    new MySphere(this, 20, 10),new MySphere(this, 20, 10),
+                                    new MyRudder(this),new MyRudder(this),new MyRudder(this),new MyRudder(this)])
         this.cube = new MyCubeMap(this);
+        this.rudder = new MyRudder(this)
+        this.crudder = {...this.rudder}
 
 
         //Objects connected to MyInterface
@@ -162,6 +167,7 @@ class MyScene extends CGFscene {
         if (this.displayCube) {
             this.cube.display()
         }
+        
         
 
         // ---- END Primitive drawing section

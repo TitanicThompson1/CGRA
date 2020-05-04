@@ -14,7 +14,7 @@ class MyCylinder extends CGFobject{
         this.normals = [];
         this.texCoords = []
 
-        //this.texCoords = [0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0];
+        
 
         let ang = 0;
         let alphaAng = 2 * Math.PI/this.slices;

@@ -4,9 +4,9 @@
  * @param scene - Reference to MyScene object
  */
 class MyVehicle extends CGFobject{
-    constructor(scene, object){
+    constructor(scene, objects){
         super(scene);
-        this.object = object
+        this.objects = objects
         this.scene = scene
         this.ang = 0
         this.speed = 0
@@ -19,15 +19,88 @@ class MyVehicle extends CGFobject{
     */
     display(){
 
-        this.scene.pushMatrix()
+       
+        /*
         this.scene.translate(this.position[0], this.position[1], this.position[2])
         this.scene.rotate(this.ang, 0, 1, 0)
         this.scene.translate(0, 0 , -0.5)
         this.scene.rotate(Math.PI/4, 0, 1, 0)
         this.scene.rotate(-Math.PI/2, 1, 0, 0)
+       */
+        //this.scene.translate(0, 10, 0)
         
-        this.object.display()
+        //Body
+        this.scene.pushMatrix()
+
+        this.scene.scale(1, 1, 2)
+        this.objects[0].display()
+
         this.scene.popMatrix()
+
+        //Gongula
+        this.scene.pushMatrix()
+        
+        this.scene.translate(0, -1.0, -0.5)
+        this.scene.rotate(Math.PI/2, 1, 0, 0)
+        this.scene.scale(0.20, 1, 0.20)
+        this.objects[1].display()
+        
+        this.scene.popMatrix()
+
+        //Gondula Speheres
+        this.scene.pushMatrix()
+        
+        this.scene.translate(0, -1.0, 0)
+
+        this.scene.pushMatrix()
+
+        this.scene.translate(0, 0, 0.50)
+        this.scene.scale(0.20, 0.20, 0.20)
+        this.objects[2].display()
+
+        this.scene.popMatrix()
+
+        this.scene.translate(0, 0, -0.50)
+        this.scene.scale(0.20, 0.20, 0.20)
+        this.objects[3].display()
+
+        this.scene.popMatrix()
+
+        //Rudders
+        this.scene.pushMatrix()
+
+        this.scene.translate(0, 0.75, -2.0)
+        this.scene.rotate(-Math.PI/2, 0, 0, 1)
+        this.scene.scale(0.75, 0.75, 0.75)
+        this.objects[4].display()
+
+        this.scene.popMatrix()
+        
+        this.scene.pushMatrix()
+
+        this.scene.translate(-0.75, 0, -2.0)
+        this.scene.scale(0.75, 0.75, 0.75)
+        this.objects[5].display()
+
+        this.scene.popMatrix()
+
+        this.scene.pushMatrix()
+
+        this.scene.translate(0.75, 0, -2.0)
+        this.scene.scale(0.75, 0.75, 0.75)
+        this.objects[6].display()
+
+        this.scene.popMatrix()
+
+        this.scene.pushMatrix()
+
+        this.scene.translate(0, -0.75, -2.0)
+        this.scene.rotate(-Math.PI/2, 0, 0, 1)
+        this.scene.scale(0.75, 0.75, 0.75)
+        this.objects[7].display()
+
+        this.scene.popMatrix()
+
     }
 
     /*
