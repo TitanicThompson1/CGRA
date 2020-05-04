@@ -68,7 +68,7 @@ class MyScene extends CGFscene {
 
         //Textures
         //this.texture1 = new CGFtexture(this, 'images/ourTexture.jpg');
-        this.texture1 = new CGFtexture(this, 'images/ourTexture2.png');
+        this.texture1 = new CGFtexture(this, 'images/earth.jpg');
         this.textures = [this.texture1]
 
     
@@ -96,7 +96,9 @@ class MyScene extends CGFscene {
 
     //Function that resets selected texture in quadMaterial
     updateAppliedTexture() {
-        this.cube.setTexture(this.textures[this.selectedTexture]);
+        //this.cube.setTexture(this.textures[this.selectedTexture]);
+        this.vehicle.setAllTextures(this.textures[this.selectedTexture])
+        this.vehicle.display()
     }
 
     checkKeys() {

@@ -11,6 +11,44 @@ class MyVehicle extends CGFobject{
         this.ang = 0
         this.speed = 0
         this.position = [0, 0, 0]
+        this.initMaterials()
+        
+
+        
+    }
+    initMaterials(){
+        this.bodyMaterial = new CGFappearance(this.scene)
+        this.bodyMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.bodyMaterial.setDiffuse(0.1, 0.1, 0.9, 1);
+        this.bodyMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+
+        this.gondolaMaterial = new CGFappearance(this.scene)
+        this.gondolaMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.gondolaMaterial.setDiffuse(0.1, 0.1, 0.9, 1);
+        this.gondolaMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+
+        this.rudderMaterial = new CGFappearance(this.scene)
+        this.rudderMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.rudderMaterial.setDiffuse(0.1, 0.1, 0.9, 1);
+        this.rudderMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+    }
+
+    setBodyTexture(texture){
+        this.bodyMaterial.setTexture(texture)
+    }
+
+    setGondolaTexture(texture){
+        this.gondolaMaterial.setTexture(texture)
+    }
+
+    setRudderTexture(texture){
+        this.rudderMaterial.setTexture(texture)
+    }
+
+    setAllTextures(texture){
+        this.setBodyTexture(texture)
+        this.setGondolaTexture(texture)
+        this.setRudderTexture(texture)
     }
    
     /*
@@ -33,21 +71,23 @@ class MyVehicle extends CGFobject{
         this.scene.pushMatrix()
 
         this.scene.scale(1, 1, 2)
+        this.bodyMaterial.apply()
         this.objects[0].display()
 
         this.scene.popMatrix()
 
-        //Gongula
+        //Gongola
         this.scene.pushMatrix()
         
         this.scene.translate(0, -1.0, -0.5)
         this.scene.rotate(Math.PI/2, 1, 0, 0)
         this.scene.scale(0.20, 1, 0.20)
+        this.gondolaMaterial.apply()
         this.objects[1].display()
         
         this.scene.popMatrix()
 
-        //Gondula Speheres
+        //Gondola Speheres
         this.scene.pushMatrix()
         
         this.scene.translate(0, -1.0, 0)
@@ -56,6 +96,7 @@ class MyVehicle extends CGFobject{
 
         this.scene.translate(0, 0, 0.50)
         this.scene.scale(0.20, 0.20, 0.20)
+        this.gondolaMaterial.apply()
         this.objects[2].display()
 
         this.scene.popMatrix()
@@ -72,6 +113,7 @@ class MyVehicle extends CGFobject{
         this.scene.translate(0, 0.75, -2.0)
         this.scene.rotate(-Math.PI/2, 0, 0, 1)
         this.scene.scale(0.75, 0.75, 0.75)
+        this.rudderMaterial.apply()
         this.objects[4].display()
 
         this.scene.popMatrix()
@@ -80,6 +122,7 @@ class MyVehicle extends CGFobject{
 
         this.scene.translate(-0.75, 0, -2.0)
         this.scene.scale(0.75, 0.75, 0.75)
+        this.rudderMaterial.apply()
         this.objects[5].display()
 
         this.scene.popMatrix()
@@ -88,6 +131,7 @@ class MyVehicle extends CGFobject{
 
         this.scene.translate(0.75, 0, -2.0)
         this.scene.scale(0.75, 0.75, 0.75)
+        this.rudderMaterial.apply()
         this.objects[6].display()
 
         this.scene.popMatrix()
@@ -97,6 +141,7 @@ class MyVehicle extends CGFobject{
         this.scene.translate(0, -0.75, -2.0)
         this.scene.rotate(-Math.PI/2, 0, 0, 1)
         this.scene.scale(0.75, 0.75, 0.75)
+        this.rudderMaterial.apply()
         this.objects[7].display()
 
         this.scene.popMatrix()

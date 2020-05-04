@@ -14,6 +14,7 @@ class MyRudder extends CGFobject{
         this.vertices=[]
         this.indices = []
         this.normals = []
+        this.texCoords = []
 
         this.vertices.push(0.5, 0, -0.5)
         this.vertices.push(0.5, 0, 0.5)
@@ -41,6 +42,8 @@ class MyRudder extends CGFobject{
         for (let i=0; i < 5; i++)
             this.normals.push(0, -1, 0)
 
+        this.texCoords.push(1, 0, 1, 0.5, 0.5, 1, 0, 0.5, 0, 0)
+        this.texCoords.push(1, 0, 1, 0.5, 0.5, 1, 0, 0.5, 0, 0)
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
