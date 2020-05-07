@@ -36,9 +36,7 @@ class MyScene extends CGFscene {
                                     new MySphere(this, 8, 4),new MySphere(this, 8, 4),new MySphere(this, 8, 4),new MySphere(this, 8, 4)])
 
         this.cube = new MyCubeMap(this);
-        this.triangle = new MyTriangle(this)
-        this.triangle = new MyTriangle(this)
-        
+        this.terrain = new MyTerrain (this, new MyPlane(this, 20))        
 
 
         //Objects connected to MyInterface
@@ -46,7 +44,7 @@ class MyScene extends CGFscene {
         this.displayCylinder = false
         this.displaySphere = false        
         this.scaleFactor = 1;
-        this.displayVehicle = true
+        this.displayVehicle = false
         this.displayCube = false
         this.selectedTexture = -1;  
         this.speedFactor = 0.1
@@ -62,6 +60,8 @@ class MyScene extends CGFscene {
         this.material.setSpecular(0.1, 0.1, 0.1, 1);
         this.material.loadTexture('images/earth.jpg');
         this.material.setTextureWrap('REPEAT', 'REPEAT');
+
+
 
         this.materialEarth = new CGFappearance(this)
         //this.materialEarth.loadTexture('images/earth.jpg')
@@ -172,7 +172,12 @@ class MyScene extends CGFscene {
         if (this.displayCube) {
             this.cube.display()
         }
-        
+
+
+        this.pushMatrix()
+        this.scale(50,0, 50)
+        this.terrain.display()
+        this.popMatrix()
         
 
         // ---- END Primitive drawing section
