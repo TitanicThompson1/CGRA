@@ -44,7 +44,7 @@ class MyScene extends CGFscene {
         this.displayCylinder = false
         this.displaySphere = false        
         this.scaleFactor = 1;
-        this.displayVehicle = false
+        this.displayVehicle = true
         this.displayCube = false
         this.selectedTexture = -1;  
         this.speedFactor = 0.1
@@ -80,7 +80,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(40, 40, 40), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -170,15 +170,19 @@ class MyScene extends CGFscene {
             this.vehicle.display()
 
         if (this.displayCube) {
+            this.pushMatrix()
+            this.translate(0,23,0)
             this.cube.display()
+            this.popMatrix()
+
         }
 
-
+        /*
         this.pushMatrix()
-        this.scale(50,0, 50)
+        this.scale(50, 1 , 50)
         this.terrain.display()
         this.popMatrix()
-        
+        */
 
         // ---- END Primitive drawing section
     }

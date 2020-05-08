@@ -59,7 +59,7 @@ class MyVehicle extends CGFobject{
 
         this.scene.pushMatrix()
         
-        this.scene.translate(this.position[0], this.position[1], this.position[2])
+        this.scene.translate(this.position[0], this.position[1] + 10, this.position[2])
         this.scene.rotate(this.ang, 0, 1, 0)
         /*
         

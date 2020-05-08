@@ -87,11 +87,13 @@ class MyCubeMap extends CGFobject{
 
     display(){
 
-        this.scene.scale(50,50,50);
+        this.scene.pushMatrix()
         
+        this.scene.scale(50,50,50);
         //Front face
         this.scene.pushMatrix()
 
+        
         this.scene.translate(0,0,0.5)
 
         this.sideMaterial.setTexture(this.frontTexture)
@@ -190,5 +192,9 @@ class MyCubeMap extends CGFobject{
         this.bottom.display()
 
         this.scene.popMatrix()
+
+        
+        this.scene.popMatrix()
+
     }       
 }

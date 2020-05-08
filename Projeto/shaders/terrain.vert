@@ -20,7 +20,7 @@ void main() {
 
     vec3 offset;
 
-    offset.z = texture2D(uSampler2, aTextureCoord).b;
+    offset.z = texture2D(uSampler2, aTextureCoord).b*8.0;
     offset.xy = vec2(0.0, 0.0);    
 	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 
