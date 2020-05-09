@@ -37,8 +37,7 @@ class MyScene extends CGFscene {
 
         this.cube = new MyCubeMap(this);
         this.terrain = new MyTerrain (this, new MyPlane(this, 20))
-        this.spheree1 = new MySphere(this, 20,10)
-        this.spheree2 = new MySphere(this, 20,10)
+        this.rudder = new MyRudder(this)
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -113,6 +112,7 @@ class MyScene extends CGFscene {
             keysPressed=true;
             this.vehicle.accelerate(this.speedFactor)
         }
+
         if (this.gui.isKeyPressed("KeyS")) {
             text+=" S ";
             keysPressed=true;
@@ -122,11 +122,17 @@ class MyScene extends CGFscene {
             text+=" A ";
             keysPressed=true;
             this.vehicle.turn(Math.PI/36)   //5º graus
+            this.vehicle.rudderInclineLeft(true)
+        }else{
+            this.vehicle.rudderInclineLeft(false)
         }
         if(this.gui.isKeyPressed("KeyD")){
             text+=" D ";
             keysPressed=true;
             this.vehicle.turn(-Math.PI/36)
+            this.vehicle.rudderInclineRight(true)
+        }else {
+            this.vehicle.rudderInclineRight(false)
         }
         if(this.gui.isKeyPressed("KeyR")){
             text+=" R ";
@@ -187,8 +193,8 @@ class MyScene extends CGFscene {
             this.popMatrix()
             
         }
-
-
+        
+        //this.rudder.display()
         // ---- END Primitive drawing section
     }
 }

@@ -13,8 +13,8 @@ class MyVehicle extends CGFobject{
         this.position = [0, 0, 0]
         this.initMaterials()
         this.t = 1
-        
-
+        this.inclineLeft = false
+        this.inclineRight = false
         
     }
     initMaterials(){
@@ -106,6 +106,7 @@ class MyVehicle extends CGFobject{
 
         this.scene.translate(0, 0, -0.50)
         this.scene.scale(0.20, 0.20, 0.20)
+        this.gondolaMaterial.apply()
         this.objects[3].display()
 
         this.scene.popMatrix()
@@ -114,6 +115,11 @@ class MyVehicle extends CGFobject{
         this.scene.pushMatrix()
 
         this.scene.translate(0, 0.75, -2.0)
+        if(this.inclineLeft)
+            this.scene.rotate(-Math.PI/6, 0, 0, 1)
+        else if(this.inclineRight)
+            this.scene.rotate(Math.PI/6, 0, 0, 1)
+
         this.scene.rotate(-Math.PI/2, 0, 0, 1)
         this.scene.scale(0.75, 0.75, 0.75)
         this.rudderMaterial.apply()
@@ -142,6 +148,11 @@ class MyVehicle extends CGFobject{
         this.scene.pushMatrix()
 
         this.scene.translate(0, -0.75, -2.0)
+        if(this.inclineLeft)
+            this.scene.rotate(-Math.PI/6, 0, 0, 1)
+        else if(this.inclineRight)
+            this.scene.rotate(Math.PI/6, 0, 0, 1)
+            
         this.scene.rotate(-Math.PI/2, 0, 0, 1)
         this.scene.scale(0.75, 0.75, 0.75)
         this.rudderMaterial.apply()
@@ -231,6 +242,14 @@ class MyVehicle extends CGFobject{
         this.ang = 0
         this.speed = 0
         this.position = [0, 0, 0]
+    }
+
+    rudderInclineLeft(value){
+        this.inclineLeft = value
+    }
+
+    rudderInclineRight(value){
+        this.inclineRight = value
     }
 
     update(){
