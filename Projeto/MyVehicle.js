@@ -12,6 +12,7 @@ class MyVehicle extends CGFobject{
         this.speed = 0
         this.position = [0, 0, 0]
         this.initMaterials()
+        this.t = 1
         
 
         
@@ -59,7 +60,7 @@ class MyVehicle extends CGFobject{
 
         this.scene.pushMatrix()
         
-        this.scene.translate(this.position[0], this.position[1] + 10, this.position[2])
+        this.scene.translate(this.position[0], this.position[1] + 0, this.position[2])
         this.scene.rotate(this.ang, 0, 1, 0)
         /*
         
@@ -166,10 +167,12 @@ class MyVehicle extends CGFobject{
         this.scene.popMatrix()
 
         //Helices
-                    //1
+                //1
         this.scene.pushMatrix()
 
-        this.scene.translate(0.23, -1.2, -0.75)
+        this.scene.translate(0.23, -1.1, -0.75)        
+        this.scene.rotate(Math.PI/2*this.speed*this.t + 0.1*this.t, 0, 0, 1)
+        this.scene.translate(0, -0.08, 0)
         this.scene.scale(0.03, 0.08, 0)
         this.objects[10].display()
 
@@ -177,8 +180,10 @@ class MyVehicle extends CGFobject{
                     //2
         this.scene.pushMatrix()
 
-        this.scene.translate(0.23, -1, -0.75)
-        this.scene.scale(0.03, 0.08, 0.0)
+        this.scene.translate(0.23, -1.1, -0.75)
+        this.scene.rotate(Math.PI/2*this.speed*this.t + 0.1*this.t, 0, 0, 1)
+        this.scene.translate(0, 0.08, 0)
+        this.scene.scale(0.03, 0.08, 0)
         this.objects[11].display()
 
         this.scene.popMatrix()
@@ -186,7 +191,9 @@ class MyVehicle extends CGFobject{
                     //3
         this.scene.pushMatrix()
 
-        this.scene.translate(-0.24, -1.2, -0.75)
+        this.scene.translate(-0.24, -1.1, -0.75)
+        this.scene.rotate(Math.PI/2*this.speed*this.t + 0.1*this.t, 0, 0, 1)
+        this.scene.translate(0, -0.08, 0)
         this.scene.scale(0.03, 0.08, 0)
         this.objects[12].display()
 
@@ -195,7 +202,9 @@ class MyVehicle extends CGFobject{
                     //4
         this.scene.pushMatrix()
 
-        this.scene.translate(-0.24, -1.0, -0.75)
+        this.scene.translate(-0.24, -1.1, -0.75)
+        this.scene.rotate(Math.PI/2*this.speed*this.t + 0.1*this.t, 0, 0, 1)
+        this.scene.translate(0, 0.08, 0)
         this.scene.scale(0.03, 0.08, 0)
         this.objects[13].display()
 
@@ -228,7 +237,7 @@ class MyVehicle extends CGFobject{
         this.directionVector = [Math.sin(this.ang) * this.speed, 0, Math.cos(this.ang) * this.speed]
         for(let i=0; i < 3; i++){
             this.position[i] += this.directionVector[i]
-        } 
-        
+        }
+        this.t++
     }
 }
