@@ -8,6 +8,7 @@ class MyTerrain extends CGFobject {
         this.terrainTex = new CGFtexture(this.scene, 'images/terrain.jpg')
         this.terrainShader.setUniformsValues({uSampler2: 1})
         
+        
     }
 
 
@@ -20,6 +21,7 @@ class MyTerrain extends CGFobject {
 
         this.scene.rotate(-Math.PI/2, 1,0,0)
         this.scene.translate(0, 0, -0.9)
+        
         this.plane.display()
         
         this.scene.popMatrix()

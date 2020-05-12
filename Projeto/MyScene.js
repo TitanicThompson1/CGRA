@@ -37,7 +37,8 @@ class MyScene extends CGFscene {
 
         this.cube = new MyCubeMap(this);
         this.terrain = new MyTerrain (this, new MyPlane(this, 20))
-        this.rudder = new MyRudder(this)
+        this.box = new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
+                                new MySplitQuad(this, new CGFtexture(this, 'images/box1.png')))
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -81,8 +82,8 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(Math.PI/6, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
-        //this.camera = new CGFcamera(Math.PI/6, 0.1, 500, vec3.fromValues(40, 30, 40), vec3.fromValues(0, 10, 0));
+        //this.camera = new CGFcamera(Math.PI/6, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(Math.PI/6, 0.1, 500, vec3.fromValues(40, 30, 40), vec3.fromValues(0, 10, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -93,7 +94,8 @@ class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys()
-        this.vehicle.update()
+        this.vehicle.update(t)
+        this.box.update(t)
     }
 
     //Function that resets selected texture in quadMaterial
@@ -138,7 +140,19 @@ class MyScene extends CGFscene {
             text+=" R ";
             keysPressed=true;
             this.vehicle.reset()
+            this.box.reset()
         }
+        if(this.gui.isKeyPressed("KeyP")){
+            text+=" P ";
+            keysPressed=true;
+            this.vehicle.startAutoPilot(5,5)
+        }
+        if(this.gui.isKeyPressed("KeyL")){
+            text+=" L ";
+            keysPressed=true;
+            this.box.drop(this.vehicle.getPosition())
+        }
+        
         
         if (keysPressed)
             console.log(text);
@@ -193,6 +207,7 @@ class MyScene extends CGFscene {
             this.popMatrix()
             
         }
+        this.box.display()
         
         //this.rudder.display()
         // ---- END Primitive drawing section

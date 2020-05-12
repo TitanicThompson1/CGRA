@@ -10,11 +10,12 @@ class MyVehicle extends CGFobject{
         this.scene = scene
         this.ang = 0
         this.speed = 0
-        this.position = [0, 0, 0]
+        this.position = [0, 10, 0]
         this.initMaterials()
         this.t = 1
         this.inclineLeft = false
         this.inclineRight = false
+        this.autoPilotOn = false
         
     }
     initMaterials(){
@@ -60,7 +61,7 @@ class MyVehicle extends CGFobject{
 
         this.scene.pushMatrix()
         
-        this.scene.translate(this.position[0], this.position[1] + 0, this.position[2])
+        this.scene.translate(this.position[0], this.position[1], this.position[2])
         this.scene.rotate(this.ang, 0, 1, 0)
         /*
         
@@ -230,10 +231,12 @@ class MyVehicle extends CGFobject{
     positivos ou negativos).
     */
     turn(val){
+        if(this.autoPilotOn) return;
         this.ang += val
     }
 
     accelerate(val){
+        if(this.autoPilotOn) return;
         if(this.speed + val >= 0)
             this.speed += val
     }
@@ -241,7 +244,8 @@ class MyVehicle extends CGFobject{
     reset() {
         this.ang = 0
         this.speed = 0
-        this.position = [0, 0, 0]
+        this.position = [0, 10, 0]
+        this.autoPilotOn = false
     }
 
     rudderInclineLeft(value){
@@ -252,11 +256,60 @@ class MyVehicle extends CGFobject{
         this.inclineRight = value
     }
 
-    update(){
-        this.directionVector = [Math.sin(this.ang) * this.speed, 0, Math.cos(this.ang) * this.speed]
-        for(let i=0; i < 3; i++){
-            this.position[i] += this.directionVector[i]
+    update(t){
+
+        if(this.previousTime === 0 && this.autoPilotOn){
+            
+            this.previousTime = t
+
+        }else if(this.autoPilotOn) {
+
+            this.deltaTime = (t - this.previousTime)/1000
+            this.pilotAngle += this.deltaTime * this.angularSpeed
+            this.directionVector = [Math.sin(this.pilotAngle), 0, Math.cos(this.pilotAngle)]
+
+            this.ang = this.pilotAngle + Math.PI/2
+
+            this.position[0] = this.center[0] + this.directionVector[0] * this.radius
+            this.position[1] = this.center[1] + this.directionVector[1] * this.radius
+            this.position[2] = this.center[2] + this.directionVector[2] * this.radius
+
+            this.previousTime = t
+        }else{
+            this.directionVector = [Math.sin(this.ang) * this.speed, 0, Math.cos(this.ang) * this.speed]
+            for(let i=0; i < 3; i++)
+                this.position[i] += this.directionVector[i]
         }
         this.t++
+    }
+    getPosition(){
+        return this.position
+    }
+
+    startAutoPilot(radius, animationTime){
+        if(this.autoPilotOn){
+            this.autoPilotOn = false
+            this.inclineLeft = false
+            return;
+        }
+        
+        this.radius = radius
+        this.direction = [Math.sin(this.ang + Math.PI/2), 0,  -Math.cos(this.ang + Math.PI/2)]
+        
+        this.center=[]
+        this.center[0] = this.position[0] + this.direction[0]*this.radius
+        this.center[1] = this.position[1] + this.direction[1]*this.radius
+        this.center[2] = this.position[2] + this.direction[2]*this.radius
+
+        this.pilotAngle = this.ang - Math.PI/2
+        /*
+        this.position[0] = this.center[0] + this.direction[0] * this.radius
+        this.position[1] = this.center[1] + this.direction[1] * this.radius
+        this.position[2] = this.center[2] + this.direction[2] * this.radius
+        */       
+        this.angularSpeed = Math.PI*2 / animationTime
+        this.previousTime = 0
+        this.autoPilotOn = true
+        this.inclineLeft = true
     }
 }
