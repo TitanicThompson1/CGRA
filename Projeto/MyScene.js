@@ -37,9 +37,19 @@ class MyScene extends CGFscene {
 
         this.cube = new MyCubeMap(this);
         this.terrain = new MyTerrain (this, new MyPlane(this, 20))
+        this.supplyList = [new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
+        new MySplitQuad(this, new CGFtexture(this, 'images/box1.png'))),new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
+        new MySplitQuad(this, new CGFtexture(this, 'images/box1.png'))),new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
+        new MySplitQuad(this, new CGFtexture(this, 'images/box1.png'))),new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
+        new MySplitQuad(this, new CGFtexture(this, 'images/box1.png'))),new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
+        new MySplitQuad(this, new CGFtexture(this, 'images/box1.png')))]
+        
+        this.nSuppliesDelivered = 0
+
+        /*
         this.box = new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
                                 new MySplitQuad(this, new CGFtexture(this, 'images/box1.png')))
-
+        */
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayCylinder = false
@@ -95,7 +105,12 @@ class MyScene extends CGFscene {
     update(t){
         this.checkKeys()
         this.vehicle.update(t)
-        this.box.update(t)
+        this.udpateAllSupplies(t)
+    }
+
+    udpateAllSupplies(t){
+        for(let i = 0; i < 5; i++)
+            this.supplyList[i].update(t)
     }
 
     //Function that resets selected texture in quadMaterial
@@ -140,7 +155,8 @@ class MyScene extends CGFscene {
             text+=" R ";
             keysPressed=true;
             this.vehicle.reset()
-            this.box.reset()
+            this.resetSupplies()
+            
         }
         if(this.gui.isKeyPressed("KeyP")){
             text+=" P ";
@@ -150,12 +166,20 @@ class MyScene extends CGFscene {
         if(this.gui.isKeyPressed("KeyL")){
             text+=" L ";
             keysPressed=true;
-            this.box.drop(this.vehicle.getPosition())
+            if(this.nSuppliesDelivered < 5){
+                this.supplyList[this.nSuppliesDelivered].drop(this.vehicle.getPosition())
+                this.nSuppliesDelivered++
+            }
         }
         
         
         if (keysPressed)
             console.log(text);
+    }
+    resetSupplies(){
+        for(let i = 0; i < 5; i++)
+            this.supplyList[i].reset()
+        this.nSuppliesDelivered = 0
     }
 
     display() {
@@ -207,9 +231,14 @@ class MyScene extends CGFscene {
             this.popMatrix()
             
         }
-        this.box.display()
         
+        this.displaySupplies()
         //this.rudder.display()
         // ---- END Primitive drawing section
     }
+    displaySupplies(){
+        for(let i = 0; i < 5; i++)
+            this.supplyList[i].display()
+    }
+    
 }
