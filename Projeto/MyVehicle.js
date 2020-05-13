@@ -294,7 +294,7 @@ class MyVehicle extends CGFobject{
         }
         
         this.radius = radius
-        this.direction = [Math.sin(this.ang + Math.PI/2), 0,  -Math.cos(this.ang + Math.PI/2)]
+        this.direction = [Math.sin(this.ang + Math.PI/2), 0,  Math.cos(this.ang + Math.PI/2)]
         
         this.center=[]
         this.center[0] = this.position[0] + this.direction[0]*this.radius
