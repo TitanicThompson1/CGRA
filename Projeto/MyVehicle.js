@@ -65,183 +65,221 @@ class MyVehicle extends CGFobject{
         
         this.scene.translate(this.position[0], this.position[1], this.position[2])
         this.scene.rotate(this.ang, 0, 1, 0)
-        /*
-        
-        this.scene.translate(0, 0 , -0.5)
-        this.scene.rotate(Math.PI/4, 0, 1, 0)
-        this.scene.rotate(-Math.PI/2, 1, 0, 0)
-       */
-        //this.scene.translate(0, 10, 0)
-        
+
         //Body
-        this.scene.pushMatrix()
-
-        this.scene.scale(1, 1, 2)
-        this.bodyMaterial.apply()
-        this.objects[0].display()
-
-        this.scene.popMatrix()
+        this.displayBody();
 
         //Gongola
-        this.scene.pushMatrix()
-        
-        this.scene.translate(0, -1.0, -0.5)
-        this.scene.rotate(Math.PI/2, 1, 0, 0)
-        this.scene.scale(0.20, 1, 0.20)
-        this.gondolaMaterial.apply()
-        this.objects[1].display()
-        
-        this.scene.popMatrix()
-
-        //Gondola Speheres
-        this.scene.pushMatrix()
-        
-        this.scene.translate(0, -1.0, 0)
-
-        this.scene.pushMatrix()
-
-        this.scene.translate(0, 0, 0.50)
-        this.scene.scale(0.20, 0.20, 0.20)
-        this.gondolaMaterial.apply()
-        this.objects[2].display()
-
-        this.scene.popMatrix()
-
-        this.scene.translate(0, 0, -0.50)
-        this.scene.scale(0.20, 0.20, 0.20)
-        this.gondolaMaterial.apply()
-        this.objects[3].display()
-
-        this.scene.popMatrix()
+        this.displayGondola();
 
         //Flag
-        this.scene.pushMatrix()
-
-        this.scene.translate(0, 0, -5.0)
-        this.flag.display() 
-
-        this.scene.popMatrix()
-
-        this.scene.pushMatrix()
-
-        this.scene.translate(0, 0, -5.0)
-        this.scene.rotate(Math.PI, 0, 0, 1)
-        this.flag.display() 
-
-        this.scene.popMatrix()
+        this.displayFlags();
 
 
         //Rudders
-        this.scene.pushMatrix()
-
-        this.scene.translate(0, 0.75, -2.0)
-        if(this.inclineLeft)
-            this.scene.rotate(-Math.PI/6, 0, 0, 1)
-        else if(this.inclineRight)
-            this.scene.rotate(Math.PI/6, 0, 0, 1)
-
-        this.scene.rotate(-Math.PI/2, 0, 0, 1)
-        this.scene.scale(0.75, 0.75, 0.75)
-        this.rudderMaterial.apply()
-        this.objects[4].display()
-
-        this.scene.popMatrix()
-        
-        this.scene.pushMatrix()
-
-        this.scene.translate(-0.75, 0, -2.0)
-        this.scene.scale(0.75, 0.75, 0.75)
-        this.rudderMaterial.apply()
-        this.objects[5].display()
-
-        this.scene.popMatrix()
-
-        this.scene.pushMatrix()
-
-        this.scene.translate(0.75, 0, -2.0)
-        this.scene.scale(0.75, 0.75, 0.75)
-        this.rudderMaterial.apply()
-        this.objects[6].display()
-
-        this.scene.popMatrix()
-
-        this.scene.pushMatrix()
-
-        this.scene.translate(0, -0.75, -2.0)
-        if(this.inclineLeft)
-            this.scene.rotate(-Math.PI/6, 0, 0, 1)
-        else if(this.inclineRight)
-            this.scene.rotate(Math.PI/6, 0, 0, 1)
-            
-        this.scene.rotate(-Math.PI/2, 0, 0, 1)
-        this.scene.scale(0.75, 0.75, 0.75)
-        this.rudderMaterial.apply()
-        this.objects[7].display()
-
-        this.scene.popMatrix()
+        this.displayRudders();
 
         //Motors
-        this.scene.pushMatrix()
-
-        this.scene.translate(0.23, -1.1, -0.6)
-        this.scene.scale(0.1, 0.075, 0.15)
-        this.objects[8].display()
-
-        this.scene.popMatrix()
-
-        this.scene.pushMatrix()
-
-        this.scene.translate(-0.23, -1.1, -0.6)
-        this.scene.scale(0.1, 0.075, 0.15)
-        this.objects[9].display()
-
-        this.scene.popMatrix()
+        this.displayMotors();
 
         //Helices
-                //1
-        this.scene.pushMatrix()
-
-        this.scene.translate(0.23, -1.1, -0.75)        
-        this.scene.rotate(Math.PI/2*this.speed*this.t + 0.1*this.t, 0, 0, 1)
-        this.scene.translate(0, -0.08, 0)
-        this.scene.scale(0.03, 0.08, 0)
-        this.objects[10].display()
+        this.displayHelices();
 
         this.scene.popMatrix()
-                    //2
-        this.scene.pushMatrix()
+    }
 
-        this.scene.translate(0.23, -1.1, -0.75)
-        this.scene.rotate(Math.PI/2*this.speed*this.t + 0.1*this.t, 0, 0, 1)
-        this.scene.translate(0, 0.08, 0)
-        this.scene.scale(0.03, 0.08, 0)
-        this.objects[11].display()
+    displayHelices() {
 
-        this.scene.popMatrix()
-                    
-                    //3
-        this.scene.pushMatrix()
+        //1
+        this.displayFirstHelice();
+        
+        //2
+        this.displaySecondHelice();
+        
+        //3
+        this.displayThirdHelice();
+        
+        //4
+        this.displayForthHelice();
+    }
 
-        this.scene.translate(-0.24, -1.1, -0.75)
-        this.scene.rotate(Math.PI/2*this.speed*this.t + 0.1*this.t, 0, 0, 1)
-        this.scene.translate(0, -0.08, 0)
-        this.scene.scale(0.03, 0.08, 0)
-        this.objects[12].display()
+    displayForthHelice() {
+        this.scene.pushMatrix();
+        this.scene.translate(-0.24, -1.1, -0.75);
+        this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1);
+        this.scene.translate(0, 0.08, 0);
+        this.scene.scale(0.03, 0.08, 0);
+        this.objects[13].display();
+        this.scene.popMatrix();
+    }
 
-        this.scene.popMatrix()
+    displayThirdHelice() {
+        this.scene.pushMatrix();
+        this.scene.translate(-0.24, -1.1, -0.75);
+        this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1);
+        this.scene.translate(0, -0.08, 0);
+        this.scene.scale(0.03, 0.08, 0);
+        this.objects[12].display();
+        this.scene.popMatrix();
+    }
 
-                    //4
-        this.scene.pushMatrix()
+    displaySecondHelice() {
+        this.scene.pushMatrix();
+        this.scene.translate(0.23, -1.1, -0.75);
+        this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1);
+        this.scene.translate(0, 0.08, 0);
+        this.scene.scale(0.03, 0.08, 0);
+        this.objects[11].display();
+        this.scene.popMatrix();
+    }
 
-        this.scene.translate(-0.24, -1.1, -0.75)
-        this.scene.rotate(Math.PI/2*this.speed*this.t + 0.1*this.t, 0, 0, 1)
-        this.scene.translate(0, 0.08, 0)
-        this.scene.scale(0.03, 0.08, 0)
-        this.objects[13].display()
+    displayFirstHelice() {
+        this.scene.pushMatrix();
+        this.scene.translate(0.23, -1.1, -0.75);
+        this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1);
+        this.scene.translate(0, -0.08, 0);
+        this.scene.scale(0.03, 0.08, 0);
+        this.objects[10].display();
+        this.scene.popMatrix();
+    }
 
-        this.scene.popMatrix()
+    displayMotors() {
+        //1
+        this.scene.pushMatrix();
+        
+        this.scene.translate(0.23, -1.1, -0.6);
+        this.scene.scale(0.1, 0.075, 0.15);
+        this.objects[8].display();
+        
+        this.scene.popMatrix();
 
-        this.scene.popMatrix()
+        //2
+        this.scene.pushMatrix();
+        
+        this.scene.translate(-0.23, -1.1, -0.6);
+        this.scene.scale(0.1, 0.075, 0.15);
+        this.objects[9].display();
+        
+        this.scene.popMatrix();
+    }
+
+    displayRudders() {
+        this.displayTopRudder();
+        
+        this.displayRightRudder();
+        
+        this.displatLeftRudder();
+        
+        this.displayBottomRudder();
+    }
+
+    displayBottomRudder() {
+        this.scene.pushMatrix();
+
+        this.scene.translate(0, -0.75, -2.0);
+        if (this.inclineLeft)
+            this.scene.rotate(-Math.PI / 6, 0, 0, 1);
+        else if (this.inclineRight)
+            this.scene.rotate(Math.PI / 6, 0, 0, 1);
+        this.scene.rotate(-Math.PI / 2, 0, 0, 1);
+        this.scene.scale(0.75, 0.75, 0.75);
+        this.rudderMaterial.apply();
+        this.objects[7].display();
+
+        this.scene.popMatrix();
+    }
+
+    displatLeftRudder() {
+        this.scene.pushMatrix();
+
+        this.scene.translate(0.75, 0, -2.0);
+        this.scene.scale(0.75, 0.75, 0.75);
+        this.rudderMaterial.apply();
+        this.objects[6].display();
+
+        this.scene.popMatrix();
+    }
+
+    displayRightRudder() {
+        this.scene.pushMatrix();
+
+        this.scene.translate(-0.75, 0, -2.0);
+        this.scene.scale(0.75, 0.75, 0.75);
+        this.rudderMaterial.apply();
+        this.objects[5].display();
+
+        this.scene.popMatrix();
+    }
+
+    displayTopRudder() {
+        this.scene.pushMatrix();
+
+        this.scene.translate(0, 0.75, -2.0);
+        if (this.inclineLeft)
+            this.scene.rotate(-Math.PI / 6, 0, 0, 1);
+        else if (this.inclineRight)
+            this.scene.rotate(Math.PI / 6, 0, 0, 1);
+        this.scene.rotate(-Math.PI / 2, 0, 0, 1);
+        this.scene.scale(0.75, 0.75, 0.75);
+        this.rudderMaterial.apply();
+        this.objects[4].display();
+
+        this.scene.popMatrix();
+    }
+
+    displayFlags() {
+        this.scene.pushMatrix();
+
+        this.scene.translate(0, 0, -5.0);
+        this.flag.display();
+
+        this.scene.popMatrix();
+        
+        this.scene.pushMatrix();
+        
+        this.scene.translate(0, 0, -5.0);
+        this.scene.rotate(Math.PI, 0, 0, 1);
+        this.flag.display();
+        
+        this.scene.popMatrix();
+    }
+
+    displayGondola() {
+        this.scene.pushMatrix();
+
+        this.scene.translate(0, -1.0, -0.5);
+        this.scene.rotate(Math.PI / 2, 1, 0, 0);
+        this.scene.scale(0.20, 1, 0.20);
+        this.gondolaMaterial.apply();
+        this.objects[1].display();
+
+        this.scene.popMatrix();
+
+        //Gondola Speheres
+        this.scene.pushMatrix();
+        
+        this.scene.translate(0, -1.0, 0);
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, 0.50);
+        this.scene.scale(0.20, 0.20, 0.20);
+        this.gondolaMaterial.apply();
+        this.objects[2].display();
+        
+        this.scene.popMatrix();
+        
+        this.scene.translate(0, 0, -0.50);
+        this.scene.scale(0.20, 0.20, 0.20);
+        this.gondolaMaterial.apply();
+        this.objects[3].display();
+        this.scene.popMatrix();
+    }
+
+    displayBody() {
+        this.scene.pushMatrix();
+        this.scene.scale(1, 1, 2);
+        this.bodyMaterial.apply();
+        this.objects[0].display();
+        this.scene.popMatrix();
     }
 
     /*
