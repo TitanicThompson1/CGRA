@@ -9,20 +9,27 @@ const SupplyStates = { INACTIVE: 0, FALLING: 1, LANDED: 2 };
 
 class MySupply extends CGFobject {
     
-    constructor(scene, object, object2) {
+    constructor(scene) {
         //default content
         
         super(scene)
         this.scene = scene
-        this.package = object
-        this.packageLanded = object2
 
-        //default state
-        this.state = SupplyStates.INACTIVE;
-        this.position = [0,0,0]        
-        this.previousTime = 0        
+        this.initVariables()
+        this.initObjects()
     }
-   
+    
+    initVariables() {
+        this.state = SupplyStates.INACTIVE
+        this.position = [0, 0, 0]
+        this.previousTime = 0
+    }
+
+    initObjects(){
+        this.package = new MyUnitCubeQuad(this.scene, new CGFtexture(this.scene, 'images/box1.png'))
+        this.packageLanded = new MySplitQuad(this.scene, new CGFtexture(this.scene, 'images/box1.png'))
+    }
+
     display() {
 
         if(this.state === SupplyStates.LANDED){
@@ -33,17 +40,18 @@ class MySupply extends CGFobject {
     }
 
     displayLanded(){
-        this.scene.pushMatrix();
+        this.scene.pushMatrix()
         this.scene.translate(this.position[0], this.position[1], this.position[2]);
-        this.packageLanded.display();
+        this.packageLanded.display()
         this.scene.popMatrix()
-
     }
 
     displayFalling(){
-        this.scene.pushMatrix();
+        this.scene.pushMatrix()
+
         this.scene.translate(this.position[0], this.position[1], this.position[2]);
-        this.package.display();
+        this.package.display()
+
         this.scene.popMatrix()
     }
    

@@ -28,27 +28,13 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 1, 1);
         this.cylinder = new MyCylinder(this, 50)
-        this.flag = new MyFlag(this, new MyPlane(this,100), new CGFtexture(this, 'images/flag.png'),"shaders/flag.vert","shaders/flag.frag")
-        this.flagInv = new MyFlag(this, new MyPlane(this,100), new CGFtexture(this, 'images/flag.png'),"shaders/flagInv.vert","shaders/flagInv.frag")     
-     
-        this.vehicle = new MyVehicle(this, [new MySphere(this, 20, 10), new MyCylinder(this,20), 
-                                    new MySphere(this, 20, 10),new MySphere(this, 20, 10),
-                                    new MyRudder(this),new MyRudder(this),new MyRudder(this),new MyRudder(this),
-                                    new MySphere(this, 16,8),new MySphere(this, 16,8),
-                                    new MySphere(this, 8, 4),new MySphere(this, 8, 4),new MySphere(this, 8, 4),
-                                    new MySphere(this, 8, 4)], this.flag, this.flagInv)
+             
+        this.vehicle = new MyVehicle(this)
 
         this.cube = new MyCubeMap(this);
         this.terrain = new MyTerrain (this, new MyPlane(this, 20))
-        this.supplyList = [new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
-        new MySplitQuad(this, new CGFtexture(this, 'images/box1.png'))),new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
-        new MySplitQuad(this, new CGFtexture(this, 'images/box1.png'))),new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
-        new MySplitQuad(this, new CGFtexture(this, 'images/box1.png'))),new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
-        new MySplitQuad(this, new CGFtexture(this, 'images/box1.png'))),new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
-        new MySplitQuad(this, new CGFtexture(this, 'images/box1.png')))]
+        this.supplyList = [new MySupply(this), new MySupply(this), new MySupply(this), new MySupply(this), new MySupply(this)]
 
-        
-        
         this.nSuppliesDelivered = 0
 
         /*
@@ -238,11 +224,6 @@ class MyScene extends CGFscene {
         }
         
         this.displaySupplies()
-
-        //this.flag.display()
-
-        //this.rudder.display()
-        // ---- END Primitive drawing section
     }
 
 

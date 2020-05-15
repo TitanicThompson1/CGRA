@@ -4,22 +4,51 @@
  * @param scene - Reference to MyScene object
  */
 class MyVehicle extends CGFobject{
-    constructor(scene, objects, flag, flagInv){
+    constructor(scene){
         super(scene);
-        this.objects = objects
-        this.flag = flag
-        this.flagInv = flagInv
         this.scene = scene
-        this.ang = 0
-        this.speed = 0
-        this.position = [0, 10, 0]
-        this.initMaterials()
-        this.t = 1
-        this.inclineLeft = false
-        this.inclineRight = false
-        this.autoPilotOn = false
+
+        this.initVariables()
+        this.initMaterials()      
+        this.initObjects()
         
     }
+
+    initVariables() {
+        this.ang = 0;
+        this.speed = 0;
+        this.position = [0, 10, 0];
+        this.t = 1;
+        this.inclineLeft = false;
+        this.inclineRight = false;
+        this.autoPilotOn = false;
+    }
+
+    initObjects(){
+        this.body = new MySphere(this.scene, 20, 10)
+        
+        this.gondolaBody = new MyCylinder(this.scene, 20)
+        this.gondolaSphere1 = new MySphere(this.scene, 20, 10)
+        this.gondolaSphere2 = new MySphere(this.scene, 20, 10)
+        
+        this.topRudder = new MyRudder(this.scene)
+        this.bottomRudder = new MyRudder(this.scene)
+        this.leftRudder = new MyRudder(this.scene)
+        this.rightRudder = new MyRudder(this.scene)
+        
+        this.leftMotor = new MySphere(this.scene, 16, 8)
+        this.rightMotor = new MySphere(this.scene, 16, 8)
+
+        this.helice1 = new MySphere(this.scene, 8, 4)
+        this.helice2 = new MySphere(this.scene, 8, 4)
+        this.helice3 = new MySphere(this.scene, 8, 4)
+        this.helice4 = new MySphere(this.scene, 8, 4)
+
+        this.flag = new MyFlag(this.scene, new CGFtexture(this.scene, 'images/flag.png'),"shaders/flag.vert","shaders/flag.frag")
+        this.flagInv = new MyFlag(this.scene, new CGFtexture(this.scene, 'images/flag.png'),"shaders/flagInv.vert", "shaders/flagInv.frag")     
+
+    }
+
     initMaterials(){
         this.bodyMaterial = new CGFappearance(this.scene)
         this.bodyMaterial.setAmbient(0.6, 0.6, 0.6, 1);
@@ -90,75 +119,76 @@ class MyVehicle extends CGFobject{
 
     displayHelices() {
 
-        //1
-        this.displayFirstHelice();
-        
-        //2
-        this.displaySecondHelice();
-        
-        //3
-        this.displayThirdHelice();
-        
-        //4
-        this.displayForthHelice();
+        this.displayFirstHelice()
+        this.displaySecondHelice()
+        this.displayThirdHelice()
+        this.displayForthHelice()
     }
 
     displayForthHelice() {
-        this.scene.pushMatrix();
-        this.scene.translate(-0.24, -1.1, -0.75);
-        this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1);
-        this.scene.translate(0, 0.08, 0);
-        this.scene.scale(0.03, 0.08, 0);
-        this.objects[13].display();
-        this.scene.popMatrix();
+        this.scene.pushMatrix()
+
+        this.scene.translate(-0.24, -1.1, -0.75)
+        this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1)
+        this.scene.translate(0, 0.08, 0)
+        this.scene.scale(0.03, 0.08, 0)
+        this.helice4.display()
+
+        this.scene.popMatrix()
     }
 
     displayThirdHelice() {
         this.scene.pushMatrix();
+
         this.scene.translate(-0.24, -1.1, -0.75);
         this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1);
         this.scene.translate(0, -0.08, 0);
         this.scene.scale(0.03, 0.08, 0);
-        this.objects[12].display();
+        this.helice3.display()
+
         this.scene.popMatrix();
     }
 
     displaySecondHelice() {
         this.scene.pushMatrix();
+
         this.scene.translate(0.23, -1.1, -0.75);
         this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1);
         this.scene.translate(0, 0.08, 0);
         this.scene.scale(0.03, 0.08, 0);
-        this.objects[11].display();
+        this.helice2.display()
+
         this.scene.popMatrix();
     }
 
     displayFirstHelice() {
         this.scene.pushMatrix();
+
         this.scene.translate(0.23, -1.1, -0.75);
         this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1);
         this.scene.translate(0, -0.08, 0);
         this.scene.scale(0.03, 0.08, 0);
-        this.objects[10].display();
+        this.helice1.display()
+
         this.scene.popMatrix();
     }
 
     displayMotors() {
-        //1
+        //Left Motor
         this.scene.pushMatrix();
         
         this.scene.translate(0.23, -1.1, -0.6);
         this.scene.scale(0.1, 0.075, 0.15);
-        this.objects[8].display();
+        this.leftMotor.display()
         
         this.scene.popMatrix();
 
-        //2
+        //Right Motor
         this.scene.pushMatrix();
         
         this.scene.translate(-0.23, -1.1, -0.6);
         this.scene.scale(0.1, 0.075, 0.15);
-        this.objects[9].display();
+        this.rightMotor
         
         this.scene.popMatrix();
     }
@@ -174,6 +204,7 @@ class MyVehicle extends CGFobject{
     }
 
     displayBottomRudder() {
+
         this.scene.pushMatrix();
 
         this.scene.translate(0, -0.75, -2.0);
@@ -184,7 +215,7 @@ class MyVehicle extends CGFobject{
         this.scene.rotate(-Math.PI / 2, 0, 0, 1);
         this.scene.scale(0.75, 0.75, 0.75);
         this.rudderMaterial.apply();
-        this.objects[7].display();
+        this.bottomRudder.display()
 
         this.scene.popMatrix();
     }
@@ -195,7 +226,7 @@ class MyVehicle extends CGFobject{
         this.scene.translate(0.75, 0, -2.0);
         this.scene.scale(0.75, 0.75, 0.75);
         this.rudderMaterial.apply();
-        this.objects[6].display();
+        this.leftRudder.display()
 
         this.scene.popMatrix();
     }
@@ -206,7 +237,7 @@ class MyVehicle extends CGFobject{
         this.scene.translate(-0.75, 0, -2.0);
         this.scene.scale(0.75, 0.75, 0.75);
         this.rudderMaterial.apply();
-        this.objects[5].display();
+        this.rightRudder.display()
 
         this.scene.popMatrix();
     }
@@ -215,19 +246,22 @@ class MyVehicle extends CGFobject{
         this.scene.pushMatrix();
 
         this.scene.translate(0, 0.75, -2.0);
+
         if (this.inclineLeft)
             this.scene.rotate(-Math.PI / 6, 0, 0, 1);
         else if (this.inclineRight)
             this.scene.rotate(Math.PI / 6, 0, 0, 1);
+
         this.scene.rotate(-Math.PI / 2, 0, 0, 1);
         this.scene.scale(0.75, 0.75, 0.75);
         this.rudderMaterial.apply();
-        this.objects[4].display();
+        this.topRudder.display()
 
         this.scene.popMatrix();
     }
 
     displayFlags() {
+        //1
         this.scene.pushMatrix();
 
         this.scene.translate(0, 0, -5.0);
@@ -235,11 +269,12 @@ class MyVehicle extends CGFobject{
 
         this.scene.popMatrix();
         
+        //2
         this.scene.pushMatrix();
         
         this.scene.translate(0, 0, -5.0);
         this.scene.rotate(Math.PI, 0, 0, 1);
-        this.flag.display();
+        this.flagInv.display();
         
         this.scene.popMatrix();
     }
@@ -251,7 +286,7 @@ class MyVehicle extends CGFobject{
         this.scene.rotate(Math.PI / 2, 1, 0, 0);
         this.scene.scale(0.20, 1, 0.20);
         this.gondolaMaterial.apply();
-        this.objects[1].display();
+        this.gondolaBody.display()
 
         this.scene.popMatrix();
 
@@ -263,14 +298,15 @@ class MyVehicle extends CGFobject{
         this.scene.translate(0, 0, 0.50);
         this.scene.scale(0.20, 0.20, 0.20);
         this.gondolaMaterial.apply();
-        this.objects[2].display();
+        this.gondolaSphere1.display()
         
         this.scene.popMatrix();
         
         this.scene.translate(0, 0, -0.50);
         this.scene.scale(0.20, 0.20, 0.20);
         this.gondolaMaterial.apply();
-        this.objects[3].display();
+        this.gondolaSphere2.display()
+        
         this.scene.popMatrix();
     }
 
@@ -278,7 +314,7 @@ class MyVehicle extends CGFobject{
         this.scene.pushMatrix();
         this.scene.scale(1, 1, 2);
         this.bodyMaterial.apply();
-        this.objects[0].display();
+        this.body.display()
         this.scene.popMatrix();
     }
 
@@ -316,6 +352,7 @@ class MyVehicle extends CGFobject{
     update(t){
         
         this.flag.update(t,this.speed)
+        this.flagInv.update(t,this.speed)
 
         if(this.previousTime === 0 && this.autoPilotOn){
             

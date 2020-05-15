@@ -1,3 +1,7 @@
+
+/**
+ * 
+ */
 class MyTerrain extends CGFobject {
     constructor(scene, plane){
         super(scene)

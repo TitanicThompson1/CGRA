@@ -1,11 +1,10 @@
 
 class MyFlag extends CGFobject {
-    constructor(scene, plane, texture, flagVert, flagFrag){
+    constructor(scene, texture, flagVert, flagFrag){
         super(scene)
         this.scene = scene
-        this.plane = plane
         
-        this.flagShadder = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag" )
+        this.flagShadder = new CGFshader(this.scene.gl, flagVert, flagFrag )
         this.texture = texture
 
         this.phase = 0.0
@@ -13,8 +12,13 @@ class MyFlag extends CGFobject {
         this.deltaT = 0
 
         this.flagShadder.setUniformsValues({phase : this.phase})
+        this.initObjects()
         this.initMaterials()
+
         
+    }
+    initObjects(){
+        this.plane =  new MyPlane(this.scene, 100)
     }
 
     initMaterials(){
