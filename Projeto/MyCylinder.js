@@ -62,7 +62,7 @@ class MyCylinder extends CGFobject{
             this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
             ang+=alphaAng;
         }
-
+        
         //Vertices for textures
         this.vertices.push(1, 0, 0);
         this.vertices.push(1, 1, 0);

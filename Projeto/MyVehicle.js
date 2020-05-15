@@ -4,9 +4,11 @@
  * @param scene - Reference to MyScene object
  */
 class MyVehicle extends CGFobject{
-    constructor(scene, objects){
+    constructor(scene, objects, flag, flagInv){
         super(scene);
         this.objects = objects
+        this.flag = flag
+        this.flagInv = flagInv
         this.scene = scene
         this.ang = 0
         this.speed = 0
@@ -111,6 +113,23 @@ class MyVehicle extends CGFobject{
         this.objects[3].display()
 
         this.scene.popMatrix()
+
+        //Flag
+        this.scene.pushMatrix()
+
+        this.scene.translate(0, 0, -5.0)
+        this.flag.display() 
+
+        this.scene.popMatrix()
+
+        this.scene.pushMatrix()
+
+        this.scene.translate(0, 0, -5.0)
+        this.scene.rotate(Math.PI, 0, 0, 1)
+        this.flag.display() 
+
+        this.scene.popMatrix()
+
 
         //Rudders
         this.scene.pushMatrix()
@@ -257,6 +276,8 @@ class MyVehicle extends CGFobject{
     }
 
     update(t){
+        
+        this.flag.update(t,this.speed)
 
         if(this.previousTime === 0 && this.autoPilotOn){
             

@@ -7,8 +7,6 @@ class MyTerrain extends CGFobject {
         this.terrainMap = new CGFtexture (this.scene, 'images/heightmap2.jpg')
         this.terrainTex = new CGFtexture(this.scene, 'images/terrain.jpg')
         this.terrainShader.setUniformsValues({uSampler2: 1})
-        
-        
     }
 
 

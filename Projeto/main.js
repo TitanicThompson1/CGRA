@@ -5,7 +5,7 @@ serialInclude=function(a){var b=console,c=serialInclude.l;if(a.length>0)c.splice
 
 serialInclude(['../lib/CGF.js','MyScene.js', 'MyInterface.js', 'MySphere.js', 'MyCylinder.js', 'MyCubeMap.js', 
                     'MyQuad.js','MyVehicle.js', 'MyTriangle.js','MyRudder.js', 'MyTerrain.js', 'MyPlane.js',
-                    'MySupply.js','MyUnitCubeQuad.js', 'MySplitQuad.js',
+                    'MySupply.js','MyUnitCubeQuad.js', 'MySplitQuad.js', 'MyFlag.js',
 
 main=function()
 {
