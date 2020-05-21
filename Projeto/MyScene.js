@@ -36,6 +36,8 @@ class MyScene extends CGFscene {
         this.supplyList = [new MySupply(this), new MySupply(this), new MySupply(this), new MySupply(this), new MySupply(this)]
 
         this.nSuppliesDelivered = 0
+        
+        this.billboard = new MyBillboard(this, 'shaders/loadingBar.vert', 'shaders/loadingBar.frag');
 
         /*
         this.box = new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
@@ -97,6 +99,7 @@ class MyScene extends CGFscene {
         this.checkKeys()
         this.vehicle.update(t)
         this.udpateAllSupplies(t)
+        this.billboard.update()
     }
 
     udpateAllSupplies(t){
@@ -160,6 +163,7 @@ class MyScene extends CGFscene {
             if(this.nSuppliesDelivered < 5){
                 this.supplyList[this.nSuppliesDelivered].drop(this.vehicle.getPosition())
                 this.nSuppliesDelivered++
+                this.billboard.update()
             }
         }
         
@@ -224,6 +228,8 @@ class MyScene extends CGFscene {
         }
         
         this.displaySupplies()
+
+        this.billboard.display()
     }
 
 

@@ -1,8 +1,82 @@
+/**
+ * MyBillboard
+ * @constructor
+ * @param scene - Reference to MyScene object
+ */
 
-class MyBillBoard extends CGFobject{
-    constructor(scene){
+class MyBillboard extends CGFobject{
+    constructor(scene, loadingBarVert, loadingBarFrag){
         super(scene)
         this.scene = scene
-        this.plane = new MyPlane (this)
+
+        this.loadingShader = new CGFshader(this.scene.gl, loadingBarVert, loadingBarFrag);
+
+        this.loadingShader.setUniformsValues({ numberOfDrops: 0 });
+
+        this.initObjects()
+        this.initMaterials()
+
+        this.currentNSuppliesDelivered = 0 ;
+
+    }
+    initObjects() {
+        this.board = new MyPlane(this.scene, 50);
+        this.support = new MyPlane(this.scene, 50);
+        this.loadingBar = new MyPlane(this.scene, 50);
+    }
+
+    initMaterials() {
+        this.boardTexture = new CGFappearance(this.scene);
+        this.boardTexture.setAmbient(0.1, 0.1, 0.1, 1);
+        this.boardTexture.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.boardTexture.setSpecular(0.1, 0.1, 0.1, 1);
+        this.boardTexture.setShininess(10.0);
+        this.boardTexture.loadTexture('images/billboard.png');
+        this.boardTexture.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.supportTexture = new CGFappearance(this.scene);
+        this.supportTexture.setAmbient(0.1, 0.1, 0.1, 1);
+        this.supportTexture.setDiffuse(0.1, 0.1, 0.1, 1);
+        this.supportTexture.setSpecular(0.1, 0.1, 0.1, 1);
+        this.supportTexture.setShininess(10.0);
+    }
+
+    update() {
+        this.loadingShader.setUniformsValues({ numberOfDrops: ++this.currentNSuppliesDelivered });
+    }
+
+    display() {
+        this.scene.pushMatrix();
+        this.scene.translate(12, 5, 17);
+        this.scene.rotate(Math.PI / 3.0, 0, 1, 0);
+
+        this.boardTexture.apply();
+        this.scene.pushMatrix();
+        this.scene.scale(2, 1, 1);
+        this.board.display();
+        this.scene.popMatrix();
+
+        this.supportTexture.apply();
+        this.scene.pushMatrix();
+        this.scene.translate(-0.7, -1, 0);
+        this.scene.scale(0.1, 1, 1);
+        this.support.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(0.7, -1, 0);
+        this.scene.scale(0.1, 1, 1);
+        this.support.display();
+        this.scene.popMatrix();
+
+        this.scene.setActiveShader(this.loadingShader);
+        this.scene.pushMatrix();
+        this.scene.translate(0, -0.15, 0.01);
+        this.scene.scale(1.5, 0.2, 1);
+        this.loadingBar.display();
+        this.scene.popMatrix();
+        this.scene.setActiveShader(this.scene.defaultShader);
+
+        this.scene.popMatrix();
     }
 }
