@@ -41,13 +41,13 @@ class MyBillboard extends CGFobject{
         this.supportTexture.setShininess(10.0);
     }
 
-    update() {
-        this.loadingShader.setUniformsValues({ numberOfDrops: ++this.currentNSuppliesDelivered });
+    update(t) {
+        this.loadingShader.setUniformsValues({ numberOfDrops: t});
     }
 
     display() {
         this.scene.pushMatrix();
-        this.scene.translate(12, 5, 17);
+        this.scene.translate(10, 5, 5);
         this.scene.rotate(Math.PI / 3.0, 0, 1, 0);
 
         this.boardTexture.apply();

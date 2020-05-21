@@ -6,6 +6,7 @@ uniform mat4 uMVMatrix;
 uniform mat4 uPMatrix;
 uniform mat4 uNMatrix;
 
+
 uniform float normScale;
 varying vec4 coordenates;
 varying vec4 normal;

@@ -99,7 +99,7 @@ class MyScene extends CGFscene {
         this.checkKeys()
         this.vehicle.update(t)
         this.udpateAllSupplies(t)
-        this.billboard.update()
+        //this.billboard.update(this.nSuppliesDelivered)
     }
 
     udpateAllSupplies(t){
@@ -150,6 +150,7 @@ class MyScene extends CGFscene {
             keysPressed=true;
             this.vehicle.reset()
             this.resetSupplies()
+            this.billboard.update(this.nSuppliesDelivered)
             
         }
         if(this.gui.isKeyPressed("KeyP")){
@@ -163,7 +164,7 @@ class MyScene extends CGFscene {
             if(this.nSuppliesDelivered < 5){
                 this.supplyList[this.nSuppliesDelivered].drop(this.vehicle.getPosition())
                 this.nSuppliesDelivered++
-                this.billboard.update()
+                this.billboard.update(this.nSuppliesDelivered)
             }
         }
         

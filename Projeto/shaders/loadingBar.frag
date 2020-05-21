@@ -9,7 +9,8 @@ varying vec4 normal;
 
 void main() {
 
-    float transition = (float(numberOfDrops)*1.2 / 5.0) - 0.3;
+    float transition = float(numberOfDrops)/5.0 - 0.5;
+
 
     if(coordenates.x > transition) {
         gl_FragColor = vec4(0.1, 0.1, 0.0, 1.0);
