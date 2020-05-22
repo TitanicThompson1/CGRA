@@ -99,110 +99,95 @@ class MyCubeMap extends CGFobject{
         this.scene.pushMatrix()
         
         this.scene.scale(50,50,50);
+
         //Front face
-        this.scene.pushMatrix()
-
-        this.scene.translate(0,0,0.5)
-
-        this.sideMaterial.setTexture(this.frontTexture)
-
-        this.sideMaterial.apply()
-
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
-        this.front.display()
-        
-        this.scene.popMatrix()
+        this.displayFront()
 
         //Back face
-        this.scene.pushMatrix()
-
-        this.scene.translate(0, 0, -0.5)
-
-        this.scene.rotate(Math.PI, 0, 1, 0)
-
-        this.sideMaterial.setTexture(this.backTexture)
-
-        this.sideMaterial.apply()
-
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
-        this.back.display()
-
-        this.scene.popMatrix()
+        this.displayBack()
 
         //Left face
-        this.scene.pushMatrix()
-        
-        this.scene.translate(-0.5,0,0)
-
-        this.scene.rotate(-Math.PI/2, 0, 1, 0)
-
-        this.sideMaterial.setTexture(this.leftTexture)
-
-        this.sideMaterial.apply()
-
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
-        this.left.display()
-
-        this.scene.popMatrix()
+        this.displayLeft()
 
         //Right face
-        this.scene.pushMatrix()
-        
-        this.scene.translate(0.5,0,0)
-
-        this.scene.rotate(Math.PI/2, 0, 1, 0)
-
-        this.sideMaterial.setTexture(this.rightTexture)
-
-        this.sideMaterial.apply()
-
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
-        this.right.display()
-
-        this.scene.popMatrix()
+        this.displayRight()
 
         
         //Top face
-        this.scene.pushMatrix()
-        
-        this.scene.translate(0,0.5,0)
-
-        this.scene.rotate(-Math.PI/2, 1, 0, 0)
-
-        this.topMaterial.setTexture(this.topTexture)
-
-        this.topMaterial.apply()
-
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
-        this.top.display()
-
-        this.scene.popMatrix()
+        this.displayTop()
 
         
         //Bottom face
-        this.scene.pushMatrix()
-
-        this.scene.translate(0,-0.5,0)
-
-        this.scene.rotate(Math.PI/2, 1, 0, 0)
-
-        this.bottomMaterial.setTexture(this.bottomTexture)
-
-        this.bottomMaterial.apply()
-
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
-        this.bottom.display()
-
-        this.scene.popMatrix()
+        this.displayBottom()
 
         
         this.scene.popMatrix()
 
     }       
+
+
+    displayBottom() {
+        this.scene.pushMatrix()
+        this.scene.translate(0, -0.5, 0)
+        this.scene.rotate(Math.PI / 2, 1, 0, 0)
+        this.bottomMaterial.setTexture(this.bottomTexture)
+        this.bottomMaterial.apply()
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST)
+        this.bottom.display()
+        this.scene.popMatrix()
+    }
+
+    displayTop() {
+        this.scene.pushMatrix()
+        this.scene.translate(0, 0.5, 0)
+        this.scene.rotate(-Math.PI / 2, 1, 0, 0)
+        this.topMaterial.setTexture(this.topTexture)
+        this.topMaterial.apply()
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST)
+        this.bottom.display()
+        this.scene.popMatrix()
+    }
+
+    displayRight() {
+        this.scene.pushMatrix()
+        this.scene.translate(0.5, 0, 0)
+        this.scene.rotate(Math.PI / 2, 0, 1, 0)
+        this.sideMaterial.setTexture(this.rightTexture)
+        this.sideMaterial.apply()
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST)
+        this.bottom.display()
+        this.scene.popMatrix()
+    }
+
+    displayLeft() {
+        this.scene.pushMatrix()
+        this.scene.translate(-0.5, 0, 0)
+        this.scene.rotate(-Math.PI / 2, 0, 1, 0)
+        this.sideMaterial.setTexture(this.leftTexture)
+        this.sideMaterial.apply()
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST)
+        this.bottom.display()
+        this.scene.popMatrix()
+    }
+
+    displayBack() {
+        this.scene.pushMatrix()
+        this.scene.translate(0, 0, -0.5)
+        this.scene.rotate(Math.PI, 0, 1, 0)
+        this.sideMaterial.setTexture(this.backTexture)
+        this.sideMaterial.apply()
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST)
+        this.bottom.display()
+        this.scene.popMatrix()
+    }
+
+    displayFront() {
+        this.scene.pushMatrix()
+        this.scene.translate(0, 0, 0.5)
+        this.sideMaterial.setTexture(this.frontTexture)
+        this.sideMaterial.apply()
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST)
+        this.bottom.display()
+        this.scene.popMatrix()
+    }
 }

@@ -50,6 +50,7 @@ class MyScene extends CGFscene {
         this.displayTerrain = false
         this.displayVehicle = true
         this.displayCube = false
+        this.displayBillboard = true
         this.scaleFactor = 1;
         this.selectedTexture = -1;  
         this.speedFactor = 0.1
@@ -78,6 +79,15 @@ class MyScene extends CGFscene {
                             new CGFtexture(this, 'images/split_cubemap/right.png'),
                             new CGFtexture(this, 'images/split_cubemap/top.png'),
                             new CGFtexture(this, 'images/split_cubemap/bottom.png')]
+
+        this.bodyTexture = new CGFtexture(this, 'images/body.png')
+        this.gondolaTexture = new CGFtexture(this, 'images/gondola.png')
+        this.rudderTexture = new CGFtexture(this, 'images/rudder.png')
+
+        //Setting vehicle textures
+        this.vehicle.setBodyTexture(this.bodyTexture)
+        this.vehicle.setGondolaTexture(this.gondolaTexture)
+        this.vehicle.setRudderTexture(this.rudderTexture)
 
         this.textures = [this.texture1]
 
@@ -237,9 +247,14 @@ class MyScene extends CGFscene {
         }
         
         
-        
+        if(this.displayBillboard){
+            this.pushMatrix()
+            //this.scale(5,5,5)
+            this.billboard.display()
+            this.popMatrix()
+        }
 
-        this.billboard.display()
+
     }
 
 

@@ -51,18 +51,18 @@ class MyVehicle extends CGFobject{
 
     initMaterials(){
         this.bodyMaterial = new CGFappearance(this.scene)
-        this.bodyMaterial.setAmbient(0.6, 0.6, 0.6, 1);
-        this.bodyMaterial.setDiffuse(0.1, 0.1, 0.9, 1);
+        this.bodyMaterial.setAmbient(0.9, 0.9, 0.9, 1);
+        this.bodyMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.bodyMaterial.setSpecular(0.1, 0.1, 0.1, 1);
 
         this.gondolaMaterial = new CGFappearance(this.scene)
-        this.gondolaMaterial.setAmbient(0.6, 0.6, 0.6, 1);
-        this.gondolaMaterial.setDiffuse(0.1, 0.1, 0.9, 1);
+        this.gondolaMaterial.setAmbient(0.9, 0.9, 0.9, 1);
+        this.gondolaMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.gondolaMaterial.setSpecular(0.1, 0.1, 0.1, 1);
 
         this.rudderMaterial = new CGFappearance(this.scene)
-        this.rudderMaterial.setAmbient(0.6, 0.6, 0.6, 1);
-        this.rudderMaterial.setDiffuse(0.1, 0.1, 0.9, 1);
+        this.rudderMaterial.setAmbient(0.9, 0.9, 0.9, 1);
+        this.rudderMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.rudderMaterial.setSpecular(0.1, 0.1, 0.1, 1);
     }
 

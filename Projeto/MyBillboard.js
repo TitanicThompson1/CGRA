@@ -41,22 +41,38 @@ class MyBillboard extends CGFobject{
         this.supportTexture.setShininess(10.0);
     }
 
+    //This function receives the number of supplies dropped an updates the shadder
     update(t) {
         this.loadingShader.setUniformsValues({ numberOfDrops: t});
     }
 
     display() {
-        this.scene.pushMatrix();
-        this.scene.translate(-2, 2, 0);
-        this.scene.rotate(Math.PI / 3.0, 0, 1, 0);
 
-        this.boardTexture.apply();
         this.scene.pushMatrix();
-        this.scene.scale(2, 1, 1);
-        this.board.display();
+        
+        
+        this.displayBoard();
+
+        this.displaySupports();
+
+        this.displayLoadingBar();
+
         this.scene.popMatrix();
+    }
 
+    displayLoadingBar() {
+        this.scene.setActiveShader(this.loadingShader);
+        this.scene.pushMatrix();
+        this.scene.translate(0, -0.15, 0.01);
+        this.scene.scale(1.5, 0.2, 1);
+        this.loadingBar.display();
+        this.scene.popMatrix();
+        this.scene.setActiveShader(this.scene.defaultShader);
+    }
+
+    displaySupports() {
         this.supportTexture.apply();
+        
         this.scene.pushMatrix();
         this.scene.translate(-0.7, -1, 0);
         this.scene.scale(0.1, 1, 1);
@@ -68,15 +84,15 @@ class MyBillboard extends CGFobject{
         this.scene.scale(0.1, 1, 1);
         this.support.display();
         this.scene.popMatrix();
+    }
 
-        this.scene.setActiveShader(this.loadingShader);
+    displayBoard() {
+        this.scene.translate(-2, 1.5, 0);
+        this.scene.rotate(Math.PI / 3.0, 0, 1, 0);
+        this.boardTexture.apply();
         this.scene.pushMatrix();
-        this.scene.translate(0, -0.15, 0.01);
-        this.scene.scale(1.5, 0.2, 1);
-        this.loadingBar.display();
-        this.scene.popMatrix();
-        this.scene.setActiveShader(this.scene.defaultShader);
-
+        this.scene.scale(2, 1, 1);
+        this.board.display();
         this.scene.popMatrix();
     }
 }
