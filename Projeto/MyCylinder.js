@@ -52,7 +52,7 @@ class MyCylinder extends CGFobject{
             this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
             ang+=alphaAng;
         }
-        //Vertices for textures
+
         this.vertices.push(1, 0, 0);
         this.normals.push(1, 0, 0);
         
@@ -76,10 +76,7 @@ class MyCylinder extends CGFobject{
         for(let i = 0; i <= this.slices; i++){
             this.texCoords.push(i/this.slices, 0)
         }
-      /*  
-        this.texCoords.push(1, 1)
-        this.texCoords.push(1, 0)
-        */
+     
         
 
         this.primitiveType = this.scene.gl.TRIANGLES;

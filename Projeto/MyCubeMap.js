@@ -84,6 +84,15 @@ class MyCubeMap extends CGFobject{
     }
     //mineBottom
 
+    setAllTextures(textures){
+        this.frontTexture = textures[0]
+        this.leftTexture = textures[1]
+        this.backTexture = textures[2]
+        this.rightTexture = textures[3]
+        this.topTexture = textures[4]
+        this.bottomTexture = textures[5]
+    
+    }
 
     display(){
 
@@ -93,7 +102,6 @@ class MyCubeMap extends CGFobject{
         //Front face
         this.scene.pushMatrix()
 
-        
         this.scene.translate(0,0,0.5)
 
         this.sideMaterial.setTexture(this.frontTexture)

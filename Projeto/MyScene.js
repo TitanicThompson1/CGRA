@@ -26,7 +26,7 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.incompleteSphere = new MySphere(this, 1, 1);
+        this.incompleteSphere = new MySphere(this, 50, 25);
         this.cylinder = new MyCylinder(this, 50)
              
         this.vehicle = new MyVehicle(this)
@@ -45,7 +45,7 @@ class MyScene extends CGFscene {
         */
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayCylinder = true
+        this.displayCylinder = false
         this.displaySphere = false        
         this.displayTerrain = false
         this.displayVehicle = true
@@ -54,7 +54,7 @@ class MyScene extends CGFscene {
         this.selectedTexture = -1;  
         this.speedFactor = 0.1
 
-        this.textureIds = { 'World': 0};
+        this.textureIds = { 'Default texture': 0};
 
         
         
@@ -63,7 +63,7 @@ class MyScene extends CGFscene {
         this.material.setAmbient(0.1, 0.1, 0.1, 1);
         this.material.setDiffuse(0.9, 0.9, 0.9, 1);
         this.material.setSpecular(0.1, 0.1, 0.1, 1);
-        this.material.loadTexture('images/earth.jpg');
+        this.material.loadTexture('images/testMap.jpg')
         this.material.setTextureWrap('REPEAT', 'REPEAT');
 
 
@@ -72,8 +72,13 @@ class MyScene extends CGFscene {
         //this.materialEarth.loadTexture('images/earth.jpg')
 
         //Textures
-        //this.texture1 = new CGFtexture(this, 'images/ourTexture.jpg');
-        this.texture1 = new CGFtexture(this, 'images/earth.jpg');
+        this.texture1 = [new CGFtexture(this, 'images/split_cubemap/front.png'),
+                            new CGFtexture(this, 'images/split_cubemap/left.png'),
+                            new CGFtexture(this, 'images/split_cubemap/back.png'),
+                            new CGFtexture(this, 'images/split_cubemap/right.png'),
+                            new CGFtexture(this, 'images/split_cubemap/top.png'),
+                            new CGFtexture(this, 'images/split_cubemap/bottom.png')]
+
         this.textures = [this.texture1]
 
     
@@ -109,9 +114,9 @@ class MyScene extends CGFscene {
 
     //Function that resets selected texture in quadMaterial
     updateAppliedTexture() {
-        //this.cube.setTexture(this.textures[this.selectedTexture]);
-        this.vehicle.setAllTextures(this.textures[this.selectedTexture])
-        this.vehicle.display()
+        this.cube.setAllTextures(this.textures[this.selectedTexture])
+        //this.vehicle.setAllTextures(this.textures[this.selectedTexture])
+        //this.vehicle.display()
     }
 
     checkKeys() {
@@ -195,13 +200,11 @@ class MyScene extends CGFscene {
 
         this.setDefaultAppearance();
 
-        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
         if(this.displaySphere){
-            this.materialEarth.apply()
+            this.material.apply()
             this.incompleteSphere.display()
         }
         if(this.displayCylinder){
@@ -209,12 +212,17 @@ class MyScene extends CGFscene {
             this.cylinder.display()
         }
 
-        if(this.displayVehicle)
+        if(this.displayVehicle){
+            this.pushMatrix()
+            this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
             this.vehicle.display()
+            this.displaySupplies()
+            this.popMatrix()
+        }
 
         if (this.displayCube) {
             this.pushMatrix()
-            this.translate(0,23,0)
+            this.translate(0,24,0)
             this.cube.display()
             this.popMatrix()
 
@@ -222,13 +230,14 @@ class MyScene extends CGFscene {
 
         if (this.displayTerrain) {
             this.pushMatrix()
+            this.translate(0,0.7,0)
             this.scale(50, 1 , 50)
             this.terrain.display()
-            this.popMatrix()
-            
+            this.popMatrix()   
         }
         
-        this.displaySupplies()
+        
+        
 
         this.billboard.display()
     }

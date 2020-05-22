@@ -342,11 +342,13 @@ class MyVehicle extends CGFobject{
     }
 
     rudderInclineLeft(value){
-        this.inclineLeft = value
+        if(!this.autoPilotOn)
+            this.inclineLeft = value
     }
 
     rudderInclineRight(value){
-        this.inclineRight = value
+        if(!this.autoPilotOn)
+            this.inclineRight = value
     }
 
     update(t){

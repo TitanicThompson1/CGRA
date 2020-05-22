@@ -62,7 +62,6 @@ class MySupply extends CGFobject {
                 return;
             }
             
-            
             if(this.position[1] > 0){
                 this.deltaDistance  = (timePassed - this.previousTime) / 1000 * this.speed;
                 this.position[1] -= this.deltaDistance;
