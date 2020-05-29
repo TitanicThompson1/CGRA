@@ -25,24 +25,11 @@ class MyVehicle extends CGFobject{
     }
 
     initObjects(){
-        this.body = new MySphere(this.scene, 20, 10)
+        this.sphere = new MySphere(this.scene, 20, 10)
         
-        this.gondolaBody = new MyCylinder(this.scene, 20)
-        this.gondolaSphere1 = new MySphere(this.scene, 20, 10)
-        this.gondolaSphere2 = new MySphere(this.scene, 20, 10)
+        this.cylinder = new MyCylinder(this.scene, 20)
         
-        this.topRudder = new MyRudder(this.scene)
-        this.bottomRudder = new MyRudder(this.scene)
-        this.leftRudder = new MyRudder(this.scene)
-        this.rightRudder = new MyRudder(this.scene)
-        
-        this.leftMotor = new MySphere(this.scene, 16, 8)
-        this.rightMotor = new MySphere(this.scene, 16, 8)
-
-        this.helice1 = new MySphere(this.scene, 8, 4)
-        this.helice2 = new MySphere(this.scene, 8, 4)
-        this.helice3 = new MySphere(this.scene, 8, 4)
-        this.helice4 = new MySphere(this.scene, 8, 4)
+        this.rudder = new MyRudder(this.scene)
 
         this.flag = new MyFlag(this.scene, new CGFtexture(this.scene, 'images/flag.png'),"shaders/flag.vert","shaders/flag.frag")
         this.flagInv = new MyFlag(this.scene, new CGFtexture(this.scene, 'images/flag.png'),"shaders/flagInv.vert", "shaders/flagInv.frag")     
@@ -132,7 +119,8 @@ class MyVehicle extends CGFobject{
         this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1)
         this.scene.translate(0, 0.08, 0)
         this.scene.scale(0.03, 0.08, 0)
-        this.helice4.display()
+        this.gondolaMaterial.apply()
+        this.sphere.display()
 
         this.scene.popMatrix()
     }
@@ -144,7 +132,8 @@ class MyVehicle extends CGFobject{
         this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1);
         this.scene.translate(0, -0.08, 0);
         this.scene.scale(0.03, 0.08, 0);
-        this.helice3.display()
+        this.gondolaMaterial.apply()
+        this.sphere.display()
 
         this.scene.popMatrix();
     }
@@ -155,8 +144,9 @@ class MyVehicle extends CGFobject{
         this.scene.translate(0.23, -1.1, -0.75);
         this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1);
         this.scene.translate(0, 0.08, 0);
-        this.scene.scale(0.03, 0.08, 0);
-        this.helice2.display()
+        this.scene.scale(0.03, 0.08, 0);~
+        this.gondolaMaterial.apply()
+        this.sphere.display()
 
         this.scene.popMatrix();
     }
@@ -168,7 +158,8 @@ class MyVehicle extends CGFobject{
         this.scene.rotate(Math.PI / 2 * this.speed * this.t + 0.1 * this.t, 0, 0, 1);
         this.scene.translate(0, -0.08, 0);
         this.scene.scale(0.03, 0.08, 0);
-        this.helice1.display()
+        this.gondolaMaterial.apply()
+        this.sphere.display()
 
         this.scene.popMatrix();
     }
@@ -179,7 +170,8 @@ class MyVehicle extends CGFobject{
         
         this.scene.translate(0.23, -1.1, -0.6);
         this.scene.scale(0.1, 0.075, 0.15);
-        this.leftMotor.display()
+        this.gondolaMaterial.apply()
+        this.sphere.display()
         
         this.scene.popMatrix();
 
@@ -188,7 +180,8 @@ class MyVehicle extends CGFobject{
         
         this.scene.translate(-0.23, -1.1, -0.6);
         this.scene.scale(0.1, 0.075, 0.15);
-        this.rightMotor
+        this.gondolaMaterial.apply()
+        this.sphere.display()
         
         this.scene.popMatrix();
     }
@@ -215,7 +208,7 @@ class MyVehicle extends CGFobject{
         this.scene.rotate(-Math.PI / 2, 0, 0, 1);
         this.scene.scale(0.75, 0.75, 0.75);
         this.rudderMaterial.apply();
-        this.bottomRudder.display()
+        this.rudder.display()
 
         this.scene.popMatrix();
     }
@@ -226,7 +219,7 @@ class MyVehicle extends CGFobject{
         this.scene.translate(0.75, 0, -2.0);
         this.scene.scale(0.75, 0.75, 0.75);
         this.rudderMaterial.apply();
-        this.leftRudder.display()
+        this.rudder.display()
 
         this.scene.popMatrix();
     }
@@ -237,7 +230,7 @@ class MyVehicle extends CGFobject{
         this.scene.translate(-0.75, 0, -2.0);
         this.scene.scale(0.75, 0.75, 0.75);
         this.rudderMaterial.apply();
-        this.rightRudder.display()
+        this.rudder.display()
 
         this.scene.popMatrix();
     }
@@ -255,7 +248,7 @@ class MyVehicle extends CGFobject{
         this.scene.rotate(-Math.PI / 2, 0, 0, 1);
         this.scene.scale(0.75, 0.75, 0.75);
         this.rudderMaterial.apply();
-        this.topRudder.display()
+        this.rudder.display()
 
         this.scene.popMatrix();
     }
@@ -286,7 +279,7 @@ class MyVehicle extends CGFobject{
         this.scene.rotate(Math.PI / 2, 1, 0, 0);
         this.scene.scale(0.20, 1, 0.20);
         this.gondolaMaterial.apply();
-        this.gondolaBody.display()
+        this.cylinder.display()
 
         this.scene.popMatrix();
 
@@ -298,14 +291,14 @@ class MyVehicle extends CGFobject{
         this.scene.translate(0, 0, 0.50);
         this.scene.scale(0.20, 0.20, 0.20);
         this.gondolaMaterial.apply();
-        this.gondolaSphere1.display()
+        this.sphere.display()
         
         this.scene.popMatrix();
         
         this.scene.translate(0, 0, -0.50);
         this.scene.scale(0.20, 0.20, 0.20);
         this.gondolaMaterial.apply();
-        this.gondolaSphere2.display()
+        this.sphere.display()
         
         this.scene.popMatrix();
     }
@@ -314,7 +307,7 @@ class MyVehicle extends CGFobject{
         this.scene.pushMatrix();
         this.scene.scale(1, 1, 2);
         this.bodyMaterial.apply();
-        this.body.display()
+        this.sphere.display()
         this.scene.popMatrix();
     }
 
@@ -362,24 +355,35 @@ class MyVehicle extends CGFobject{
 
         }else if(this.autoPilotOn) {
 
-            this.deltaTime = (t - this.previousTime)/1000
-            this.pilotAngle += this.deltaTime * this.angularSpeed
-            this.directionVector = [Math.sin(this.pilotAngle), 0, Math.cos(this.pilotAngle)]
+            this.calculateDirectionVector(t);
 
             this.ang = this.pilotAngle + Math.PI/2
 
-            this.position[0] = this.center[0] + this.directionVector[0] * this.radius
-            this.position[1] = this.center[1] + this.directionVector[1] * this.radius
-            this.position[2] = this.center[2] + this.directionVector[2] * this.radius
+            this.calculateNewPosition();
 
             this.previousTime = t
         }else{
+            
             this.directionVector = [Math.sin(this.ang) * this.speed, 0, Math.cos(this.ang) * this.speed]
             for(let i=0; i < 3; i++)
                 this.position[i] += this.directionVector[i]
         }
         this.t++
     }
+
+
+    calculateNewPosition() {
+        this.position[0] = this.center[0] + this.directionVector[0] * this.radius;
+        this.position[1] = this.center[1] + this.directionVector[1] * this.radius;
+        this.position[2] = this.center[2] + this.directionVector[2] * this.radius;
+    }
+
+    calculateDirectionVector(t) {
+        this.deltaTime = (t - this.previousTime) / 1000;
+        this.pilotAngle += this.deltaTime * this.angularSpeed;
+        this.directionVector = [Math.sin(this.pilotAngle), 0, Math.cos(this.pilotAngle)];
+    }
+
     getPosition(){
         return this.position
     }
@@ -390,8 +394,15 @@ class MyVehicle extends CGFobject{
             this.inclineLeft = false
             return;
         }
-        
         this.radius = radius
+
+        
+
+        this.initAutoPilotVariables(animationTime);
+    }
+
+    //This function inicializes the variables needed for autopilot
+    initAutoPilotVariables(animationTime) {
         this.direction = [Math.sin(this.ang + Math.PI/2), 0,  Math.cos(this.ang + Math.PI/2)]
         
         this.center=[]
@@ -399,15 +410,10 @@ class MyVehicle extends CGFobject{
         this.center[1] = this.position[1] + this.direction[1]*this.radius
         this.center[2] = this.position[2] + this.direction[2]*this.radius
 
-        this.pilotAngle = this.ang - Math.PI/2
-        /*
-        this.position[0] = this.center[0] + this.direction[0] * this.radius
-        this.position[1] = this.center[1] + this.direction[1] * this.radius
-        this.position[2] = this.center[2] + this.direction[2] * this.radius
-        */       
-        this.angularSpeed = Math.PI*2 / animationTime
-        this.previousTime = 0
-        this.autoPilotOn = true
-        this.inclineLeft = true
+        this.pilotAngle = this.ang - Math.PI / 2;
+        this.angularSpeed = Math.PI * 2 / animationTime;
+        this.previousTime = 0;
+        this.autoPilotOn = true;
+        this.inclineLeft = true;
     }
 }

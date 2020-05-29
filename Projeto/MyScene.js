@@ -39,23 +39,20 @@ class MyScene extends CGFscene {
         
         this.billboard = new MyBillboard(this, 'shaders/loadingBar.vert', 'shaders/loadingBar.frag');
 
-        /*
-        this.box = new MySupply(this, new MyUnitCubeQuad(this, new CGFtexture(this, 'images/box1.png')), 
-                                new MySplitQuad(this, new CGFtexture(this, 'images/box1.png')))
-        */
+        
         //Objects connected to MyInterface
-        this.displayAxis = true;
+        this.displayAxis = false;
         this.displayCylinder = false
         this.displaySphere = false        
-        this.displayTerrain = false
+        this.displayTerrain = true
         this.displayVehicle = true
-        this.displayCube = false
+        this.displayCube = true
         this.displayBillboard = true
         this.scaleFactor = 1;
         this.selectedTexture = -1;  
         this.speedFactor = 0.1
 
-        this.textureIds = { 'Default texture': 0};
+        this.textureIds = { 'Default texture': 0, 'Custom texture': 1};
 
         
         
@@ -68,10 +65,6 @@ class MyScene extends CGFscene {
         this.material.setTextureWrap('REPEAT', 'REPEAT');
 
 
-
-        this.materialEarth = new CGFappearance(this)
-        //this.materialEarth.loadTexture('images/earth.jpg')
-
         //Textures
         this.texture1 = [new CGFtexture(this, 'images/split_cubemap/front.png'),
                             new CGFtexture(this, 'images/split_cubemap/left.png'),
@@ -79,6 +72,17 @@ class MyScene extends CGFscene {
                             new CGFtexture(this, 'images/split_cubemap/right.png'),
                             new CGFtexture(this, 'images/split_cubemap/top.png'),
                             new CGFtexture(this, 'images/split_cubemap/bottom.png')]
+
+        this.texture2 = [new CGFtexture(this, 'images/split_cubemap/front1.png'),
+                            new CGFtexture(this, 'images/split_cubemap/left1.png'),
+                            new CGFtexture(this, 'images/split_cubemap/back1.png'),
+                            new CGFtexture(this, 'images/split_cubemap/right1.png'),
+                            new CGFtexture(this, 'images/split_cubemap/top1.png'),
+                            new CGFtexture(this, 'images/split_cubemap/bottom1.png')]
+
+                            
+        this.textures = [this.texture1, this.texture2]
+
 
         this.bodyTexture = new CGFtexture(this, 'images/body.png')
         this.gondolaTexture = new CGFtexture(this, 'images/gondola.png')
@@ -88,8 +92,6 @@ class MyScene extends CGFscene {
         this.vehicle.setBodyTexture(this.bodyTexture)
         this.vehicle.setGondolaTexture(this.gondolaTexture)
         this.vehicle.setRudderTexture(this.rudderTexture)
-
-        this.textures = [this.texture1]
 
     
     }
@@ -176,17 +178,23 @@ class MyScene extends CGFscene {
         if(this.gui.isKeyPressed("KeyL")){
             text+=" L ";
             keysPressed=true;
-            if(this.nSuppliesDelivered < 5){
-                this.supplyList[this.nSuppliesDelivered].drop(this.vehicle.getPosition())
-                this.nSuppliesDelivered++
-                this.billboard.update(this.nSuppliesDelivered)
-            }
+            this.dropSupply();
         }
         
         
         if (keysPressed)
             console.log(text);
     }
+
+    
+    dropSupply() {
+        if (this.nSuppliesDelivered < 5) {
+            this.supplyList[this.nSuppliesDelivered].drop(this.vehicle.getPosition());
+            this.nSuppliesDelivered++;
+            this.billboard.update(this.nSuppliesDelivered);
+        }
+    }
+
     resetSupplies(){
         for(let i = 0; i < 5; i++)
             this.supplyList[i].reset()
@@ -249,7 +257,7 @@ class MyScene extends CGFscene {
         
         if(this.displayBillboard){
             this.pushMatrix()
-            //this.scale(5,5,5)
+            this.scale(3, 3, 3)
             this.billboard.display()
             this.popMatrix()
         }

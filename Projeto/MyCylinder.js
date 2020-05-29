@@ -9,6 +9,7 @@ class MyCylinder extends CGFobject{
         this.initBuffers();
     }
     initBuffers(){
+
         this.vertices = [];
         this.indices = [];
         this.normals = [];
@@ -19,56 +20,48 @@ class MyCylinder extends CGFobject{
         let ang = 0;
         let alphaAng = 2 * Math.PI/this.slices;
 
-        /*
-        1 face
-        0 1 3 
-        1 4 3 
-        
-        2 face
-        1 2 4 
-        2 5 4 
-
-        3 fase
-        2 0 5 
-        0 3 5 
-
-        top
-        3 4 5 
-
-        bottom
-        0 2 1
-        */
-
-
-
         
         for(let i = 0; i < this.slices; i++){
 
+            //Pushing the bottom vertices
             this.vertices.push(Math.cos(ang), 0, -Math.sin(ang));
-
+            
+            //Pushing all indices
             this.indices.push(i, i + 1, i + 1 + this.slices);
             this.indices.push(i + 1, i + 2 + this.slices, i + 1 + this.slices);
-
+            
+            //Pushing bottom vertices
             this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
+            
+            //Updating angles
             ang+=alphaAng;
         }
 
+        //Pushing extra vertice for texture
         this.vertices.push(1, 0, 0);
         this.normals.push(1, 0, 0);
         
-        ang = 0
-        for(let i = 0; i < this.slices; i++){
+        //Reseting angle
+        ang = 0 
 
+        //Pushing the top vertices
+        for(let i = 0; i < this.slices; i++){
+            
+            //Pushing top vertices
             this.vertices.push(Math.cos(ang), 1, -Math.sin(ang));
             
+            //Pushing top normals
             this.normals.push(Math.cos(ang), 1, -Math.sin(ang));
+            
+            //Updating angle
             ang+=alphaAng;
         }
+        
+        //Pushing extra vertice for texture
+        this.vertices.push(1, 1, 0);
         this.normals.push(1, 1, 0);
         
-        this.vertices.push(1, 1, 0);
-
-
+        //Pushing text coord
         for(let i = 0; i <= this.slices; i++){
             this.texCoords.push(i/this.slices, 1)
         }
