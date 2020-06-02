@@ -2,7 +2,7 @@
 ![Javascript](https://img.shields.io/badge/language-Javascript-blue)
 
 #### CGRA
-To visit site click [here](https://titanicthompson1.github.io/CGRA/)
+To visit site click [here](https://titanicthompson1.github.io/CGRA/README.md)
 
   > ### This project was developed for CGRA 2019⁄20 by: 
 
